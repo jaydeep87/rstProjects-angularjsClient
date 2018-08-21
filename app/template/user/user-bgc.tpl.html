@@ -1,0 +1,332 @@
+<div class="container">
+
+    <div ng-include="'./app/template/common/breadcrumb.tpl.html'"></div>
+
+    <div class="row m_lr_0 p_tb_15" ng-init="initiateBGCFormModel()">
+        <h3 style="text-align: center">BGC Form</h3>
+        <div class="row m_lr_20 m_tb_15" style="border: 2px; border-color: #f16235; border-style: solid;">
+            <strong style="border-bottom-color: #f16235; border-width: medium; border-bottom-style: solid">Personal Details :</strong>
+            <p>&nbsp;</p>
+            <form name="userSignUpForm" ng-submit="userDashboard.addUpdateBGCForm()">
+                <div class="col-md-4  form-group">
+                    <label for="fName">First Name <span class="requiredStar">*</span>:</label>
+                    <input type="text" class="form-control" id="fName" placeholder="First Name" name="fName" maxlength="20" ng-model="userSignUpModel.fName" required>
+                </div>
+                <div class="col-md-4  form-group">
+                    <label for="mName">Middle Name:</label>
+                    <input type="text" class="form-control" id="mName" placeholder="Middle Name" maxlength="20" ng-model="userSignUpModel.mName" name="mName">
+                </div>
+                <div class="col-md-4  form-group">
+                    <label for="lName">Last Name:</label>
+                    <input type="text" class="form-control" id="lName" placeholder="Last Name" maxlength="20" ng-model="userSignUpModel.lName" name="lName">
+                </div>
+
+
+                <div class="col-md-4  form-group">
+                    <label for="father">Father/Spouse Name(for Married Women)<span class="requiredStar">*</span>:</label>:
+                    <input type="text" class="form-control" id="father" placeholder="Father/Spouse Name(for Married Women)" maxlength="50" ng-model="userSignUpModel.lName" name="father">
+                </div>
+
+                <div class="col-md-2  form-group">
+                    <label for="dob">DOB(dd/mm/yyyy)<span class="requiredStar">*</span>:</label>
+                    <input type="text" class="form-control" id="dob" placeholder="dob" ng-model="userSignUpModel.lName" name="dob">
+                </div>
+
+                <div class="col-md-2  form-group">
+                    <label for="gender">Gender<span class="requiredStar">*</span>:</label>
+                    <select type="text" class="form-control" id="gender" name="gender" ng-model="userSignUpModel.gender">
+                        <option value="">Gender</option>
+                        <option value="male" selected>Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-4  form-group">
+                    <label for="mobile">Direct Contact No.<span class="requiredStar">*</span>:</label>
+                    <input type="text" class="form-control" id="mobile" placeholder="Mobile No." minlength="10" maxlength="10" name="mobile" ng-model="userSignUpModel.mobile" required>
+                </div>
+
+                <div class="col-md-4 form-group">
+                    <label for="user_email">Email Id<span class="requiredStar">*</span>:</label>
+                    <input type="email" class="form-control" id="user_email" placeholder="Enter Email Id" name="email" maxlength="40" ng-model="userSignUpModel.email" required>
+                </div>
+
+                <div class="col-md-2  form-group">
+                    <label for="marital">Marital Status<span class="requiredStar">*</span>:</label>
+                    <select type="text" class="form-control" id="marital" name="marital">
+                        <option value="">Marital Status</option>
+                        <option value="married">Married</option>
+                        <option value="unmarried">Unmarried</option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-2  form-group">
+                    <label for="nationality">Nationality<span class="requiredStar">*</span>:</label>
+                    <select type="text" class="form-control" id="nationality" name="nationality">
+                        <option value="">Nationality</option>
+                        <option value="indian">Indian</option>
+                        <option value="foreigner">Foreigner</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4  form-group">
+                    <label for="nationality">Profile Photo<span class="requiredStar">*</span>:</label>
+                   <img src="app/assets/images/user-male-icon.png" style="height: 60px;width: 65px;">
+                    <input type="file">
+                </div>
+
+
+                <div class="col-md-12 form-group" style="text-align: right">
+                    <button type="submit" class="btn btn-primary"> Save </button>
+                    <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                </div>
+                <!--href="#!/user-dashboard"-->
+            </form>
+        </div>
+
+        <div class="row m_lr_20" style="padding-top: 15px">
+            <strong style="border-bottom-color: #f16235; border-width: medium; border-bottom-style: solid">Contact Details(Details of address of longest stay in last 5 yrs),Attach scanned copy of Passport(or)Electricity Bill(or) Property Tax Bill :</strong>
+            <p>&nbsp;</p>
+
+            <form>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th rowspan="2">Address Type</th>
+                        <th rowspan="2">Complete Address<br> with Pincode</th>
+                        <th colspan="2">Period of stay</th>
+
+                        <th rowspan="2">Landlord name if any</th>
+                        <th rowspan="2">Nearest Police<br> Station details</th>
+                        <th colspan="2">Contact Details</th>
+                    </tr>
+                    <tr><th>From</th>
+                        <th>To</th>
+                        <th>Mobile</th>
+                        <th>Landline</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="address in bgcUserModel.addressList track by $index">
+                        <td>{{address.addressType}}</td>
+                        <td>Complete Address<br> witd Pincode</td>
+                        <td>From</td>
+                        <td>To</td>
+
+                        <td>Landlord name if any</td>
+                        <td>Nearest Police<br> Station details</td>
+                        <td>Mobile</td>
+                        <td>Landline</td>
+                        <!--<td><button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></td>-->
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="col-md-12 form-group" style="text-align: right">
+                    <button type="submit" class="btn btn-primary"> Save </button>
+                    <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="row m_lr_20" style="padding-top: 15px">
+            <strong style="border-bottom-color: #f16235; border-width: medium; border-bottom-style: solid">Education Qualifications (Pls furnish details of Highest Qualification only) :</strong>
+            <p>&nbsp;</p>
+
+            <form>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Institute/College</th>
+                        <th>College Address</th>
+                        <th>Contact numbers</th>
+                        <th>University Details</th>
+                        <th>Register No</th>
+                        <th>Month & year of passing</th>
+                        <th>SSN (If studied in USA)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Institute/College</td>
+                        <td>College Address</td>
+                        <td>Contact numbers</td>
+                        <td>University Details</td>
+                        <td>Register No</td>
+                        <td>Month & year of passing</td>
+                        <td>SSN (If studied in USA)</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="col-md-12 form-group" style="text-align: right">
+                    <button type="submit" class="btn btn-primary"> Save </button>
+                    <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="row m_lr_20" style="padding-top: 15px">
+            <strong style="border-bottom-color: #f16235; border-width: medium; border-bottom-style: solid">Employment Verifications(Pls furnish employment details for the last 5 yrs) :</strong>
+            <p>&nbsp;</p>
+
+            <form>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th rowspan="2"><label><input type="checkbox" value="" ng-model="bgcUserModel.experienced" ng-change="checkEmployment(bgcUserModel.experienced)"><strong>Experienced</strong></label></th>
+                        <th rowspan="2">Company Name</th>
+                        <th rowspan="2">Address with Pin Code</th>
+                        <th rowspan="2">Remuneration</th>
+                        <th rowspan="2">Designation</th>
+                        <th rowspan="2">Employee code</th>
+                        <th rowspan="2">Reasons for leaving</th>
+                        <th colspan="2" title="Period of Employment (In years & month i.e 2 years & 1 month)">Period</th>
+                        <th colspan="3" title="H R details">HR</th>
+                        <th colspan="3" title="Supervisor details">Supervisor</th>
+                        <th rowspan="2">Action</th>
+                    </tr>
+                    <tr>
+
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>E-Mail</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>E-Mail</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="employment in bgcUserModel.employmentList track by $index">
+                        <td>{{$index+1}}</td>
+                        <td><input type="text" class="form-control" ng-model="employment.companyName"></td>
+                        <td>Address with Pin Code</td>
+                        <td>Remuneration</td>
+                        <td>Designation</td>
+                        <td>Employee code</td>
+                        <td>Reasons for leaving</td>
+                        <td>From</td>
+                        <td>To</td>
+                        <td>Name</td>
+                        <td>Contact</td>
+                        <td>E-Mail</td>
+                        <td>Name</td>
+                        <td>Contact</td>
+                        <td>E-Mail</td>
+                        <td><button type="button" class="btn btn-danger btn-xs" ng-click="deleteEmploymentRow($index)"><i class="fa fa-trash-o"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td colspan="10">Can the Current Employer Reference be taken now(Please writeYes/No. If 'NO', state a date after which we can contact them)</td>
+                        <td>Yes</td>
+                        <td colspan="3">Date</td><td colspan="2"><a href="" ng-click="addNewEmployment()">Add New</a></td></tr>
+                    </tbody>
+                </table>
+                <div class="col-md-12 form-group" style="text-align: right">
+                    <button type="submit" class="btn btn-primary"> Save </button>
+                    <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="row m_lr_20" style="padding-top: 15px">
+            <strong style="border-bottom-color: #f16235; border-width: medium; border-bottom-style: solid">Provide 2 Reference Name & Details :</strong>
+            <p>&nbsp;</p>
+
+            <form>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th rowspan="2">Reference</th>
+                        <th colspan="3">Reference 1</th>
+                        <th colspan="3">Reference 2</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>E-Mail</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>E-Mail</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Name</td>
+                        <td>Contact</td>
+                        <td>E-Mail</td>
+                        <td>Name</td>
+                        <td>Contact</td>
+                        <td>E-Mail</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="col-md-12 form-group" style="text-align: right">
+                    <button type="submit" class="btn btn-primary"> Save </button>
+                    <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="row m_lr_20" style="padding-top: 15px">
+            <strong style="border-bottom-color: #f16235; border-width: medium; border-bottom-style: solid">Identity verification details :</strong>
+            <p>&nbsp;</p>
+
+            <form>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Passport / Driving License No.</th>
+                        <th>Date Of Issue</th>
+                        <th>Date Of Expiry</th>
+                        <th>Place Of Issue</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Passport / Driving License No.</td>
+                        <td>Date Of Issue</td>
+                        <td>Date Of Expiry</td>
+                        <td>Place Of Issue</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="col-md-12 form-group" style="text-align: right">
+                    <button type="submit" class="btn btn-primary"> Save </button>
+                    <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="row m_lr_20" style="padding-top: 15px">
+            <strong style="border-bottom-color: #f16235; border-width: medium; border-bottom-style: solid">Upload documents :</strong>
+            <p>&nbsp;</p>
+
+            <form>
+                <div class="col-md-12 form-group" style="text-align: right">
+                    <button type="submit" class="btn btn-primary"> Save </button>
+                    <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .table>thead>tr>th {
+        vertical-align: middle;
+        text-align: center;
+    }
+    .table>tbody>tr>td {
+        vertical-align: middle;
+        text-align: center;
+    }
+    body {
+        font-size: 12px;
+    }
+</style>

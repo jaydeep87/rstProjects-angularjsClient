@@ -1,0 +1,84 @@
+<div class="container">
+
+    <div ng-include="'./app/template/common/breadcrumb.tpl.html'"></div>
+
+    <div class="row m_lr_0 p_tb_15" ng-init="userManagement.getActiveUserList()">
+        <div class="col-md-2 left-panel text-uppercase">
+            <p class="p_tb_15" style="float: right"><i class="fa fa-users fa-2x"></i></p>
+            <br>
+            <h3 class="m_t_50">{{userCount}}</h3>
+            <h4 class="bottom-green-line">{{showUserType}} Users</h4>
+            <h3 class="m_t_50"><a href="/admin-user-sign-up" type="button" class="btn btn-warning"><i class="fa fa-user-plus"></i> Add New User</a></h3>
+        </div>
+        <div class="col-md-10 p_r_0">
+            <ul class="body-page nav nav-tabs nav-justified">
+                <li class="active"><a class="p_tb_15" data-toggle="tab" data-target="#active-user" ng-click="userManagement.getActiveUserList()"> Active Users </a> </li>
+                <li><a class="p_tb_15" data-toggle="tab" data-target="#inactive-user" ng-click="userManagement.getInActiveUserList()">Inactive Users</a> </li>
+            </ul>
+            <div class="tab-content">
+                <!--TAB START-->
+                <div class="tab-pane fade in active" id="active-user">
+                    <table class="table table-striped" frame="box">
+                        <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>User Type</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="user in activeUserList track by $index">
+                            <td class="text-uppercase">{{user.fName}}</td>
+                            <td class="text-uppercase">{{user.lName ? user.lName : '-' }}</td>
+                            <td class="text-uppercase">{{user.gender}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.mobile}}</td>
+                            <td>{{user.isAdmin ? 'Admin' : 'User'}}</td>
+                            <td><a ng-if="!(userData.userId == user._id)" href="" type="button" class="btn btn-warning btn-xs" ng-click="userManagement.deactivateUser(user._id)"><i class="fa fa-times"></i> Deactivate</a>
+                            <span ng-if="(userData.userId == user._id)"><strong>You</strong></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--TAB END-->
+
+                <!--TAB START-->
+                <div class="tab-pane fade" id="inactive-user">
+                    <table class="table table-striped" frame="box">
+                        <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>User Type</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr  ng-repeat="user in inActiveUserList track by $index">
+                            <td class="text-uppercase">{{user.fName}}</td>
+                            <td class="text-uppercase">{{user.lName ? user.lName : '-' }}</td>
+                            <td class="text-uppercase">{{user.gender}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.mobile}}</td>
+                            <td>{{user.isAdmin ? 'Admin' : 'User'}}</td>
+                            <td><a href="" type="button" class="btn btn-primary btn-xs" ng-click="userManagement.activateUser(user._id)"><i class="fa fa-check-square-o"></i> Activate</a></td>
+                        </tr>
+                        <tr ng-if="!inActiveUserList.length"><td colspan="7">No any deactivated User found.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--TAB END-->
+            </div>
+         </div>
+
+    </div>
+
+</div>

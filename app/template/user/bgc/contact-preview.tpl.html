@@ -1,0 +1,240 @@
+<!--Contact Details start-->
+<div class="container">
+    <ul class="sub-body-page nav nav-tabs sub-tab-right-align">
+        <li class="active"><a href="" data-toggle="tab" data-target="#contactDetails">Preview</a></li>
+        <li><a href="" data-toggle="tab" data-target="#contactDetailsEdit">Add/Edit</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="contactDetails" class="tab-pane fade in active">
+            <div class="col-md-12 p_lr_0 p_b_0" style="border: solid;border-color: #00627e;">
+                <h3>Contact Details</h3>
+                <h6> <strong>Note :- </strong>Details of address of longest stay in last 5 yrs,Attach scanned copy of Passport(or)Electricity Bill(or) Property Tax Bill.</h6>
+                <table class="table table-striped" style="margin-bottom: 0px">
+                    <thead>
+                    <tr>
+                        <th rowspan="2" class="col-md-2">Address</th>
+                        <th rowspan="2" class="col-md-2">Address Type</th>
+                        <th rowspan="2" class="col-md-2">Complete Address<br> with Pincode</th>
+                        <th colspan="2" class="col-md-2">Period of stay</th>
+
+                        <th rowspan="2" class="col-md-2">Landlord name if any</th>
+                        <th rowspan="2" class="col-md-2">Nearest Police<br> Station details</th>
+                        <th colspan="2" class="col-md-2">Contact Details</th>
+                    </tr>
+                    <tr><th>From</th>
+                        <th>To</th>
+                        <th>Mobile</th>
+                        <th>Landline</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Complete Permanent Address </strong></td>
+                        <td class="text-capitalize">{{contactAddress.permanent.addressType}}</td>
+                        <td>{{contactAddress.permanent.address}}</td>
+                        <td>{{contactAddress.permanent.fromDate}}</td>
+                        <td>{{contactAddress.permanent.toDate}}</td>
+
+                        <td>{{contactAddress.permanent.landlord}}</td>
+                        <td>{{contactAddress.permanent.policeStation}}</td>
+                        <td>{{contactAddress.permanent.mobile}}</td>
+                        <td>{{contactAddress.permanent.landline}}</td>
+                        <!--<td><button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></td>-->
+                    </tr>
+                    <tr>
+                        <td><strong>Complete Current Address</strong></td>
+                        <td class="text-capitalize">{{contactAddress.current.addressType}}</td>
+                        <td>{{contactAddress.current.address}}</td>
+                        <td>{{contactAddress.current.fromDate}}</td>
+                        <td>{{contactAddress.current.toDate}}</td>
+
+                        <td>{{contactAddress.current.landlord}}</td>
+                        <td>{{contactAddress.current.policeStation}}</td>
+                        <td>{{contactAddress.current.mobile}}</td>
+                        <td>{{contactAddress.current.landline}}</td>
+                        <!--<td><button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></td>-->
+                    </tr>
+                    <tr ng-if="contactAddress.isIntermediateAddress">
+                        <td><strong>Inter Mediate Address 1</strong></td>
+                        <td class="text-capitalize">{{contactAddress.interMediate.addressType}}</td>
+                        <td>{{contactAddress.interMediate.address}}</td>
+                        <td>{{contactAddress.interMediate.fromDate}}</td>
+                        <td>{{contactAddress.interMediate.toDate}}</td>
+
+                        <td>{{contactAddress.interMediate.landlord}}</td>
+                        <td>{{contactAddress.interMediate.policeStation}}</td>
+                        <td>{{contactAddress.interMediate.mobile}}</td>
+                        <td>{{contactAddress.interMediate.landline}}</td>
+                        <!--<td><button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></td>-->
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div id="contactDetailsEdit" class="tab-pane fade">
+            <div class="col-md-12" style="border: solid; border-color: #f16235;">
+                <p>&nbsp;</p>
+                <form name="userContactDetailsForm" ng-submit="userDashboard.updateBGCContactDetails()">
+                    <p style="border-bottom-color: #f16235; border-width: thin; border-bottom-style: solid;">Complete Permanent Address :- </p>
+                    <div class="col-md-6 form-group">
+                        <label for="completeAddress">Complete Address with pin code <span class="requiredStar">*</span>:</label>
+                        <textarea rows="2" class="form-control" id="completeAddress" ng-model="contactAddress.permanent.address" placeholder="Complete Address with pin code" maxlength="300" required></textarea>
+                    </div>
+                    <div class="col-md-6" ng-init="getDurationDate()">
+                        <p>Period for stay :-</p>
+                        <div class="col-md-6 form-group">
+                            <label for="permanentFromDate">From Date<span class="requiredStar">*</span>:</label>
+                            <input id="permanentFromDate" placeholder="From" type="text" ng-model="contactAddress.permanent.fromDate" class="form-control datetimepicker1" onkeydown="return false;" required>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="permanentToDate">To Date<span class="requiredStar">*</span>:</label>
+                        <input id="permanentToDate" placeholder="To" type="text" ng-model="contactAddress.permanent.toDate" class="form-control datetimepicker1" onkeydown="return false;" required>
+                    </div>
+                    </div>
+
+                    <div class="col-md-2 form-group">
+                        <label>Address Type<span class="requiredStar">*</span>:</label>
+                        <select type="text" class="form-control" ng-model="contactAddress.permanent.addressType" required>
+                            <option value="" selected="selected">Address Type</option>
+                            <option value="rented">Rented</option>
+                            <option value="own">Own House</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 form-group">
+                        <label for="permanentMobile">Mobile<span class="requiredStar">*</span>:</label>
+                        <input type="text" title="Contact Details(Mobile)" only-numbers class="form-control" id="permanentMobile" ng-model="contactAddress.permanent.mobile" placeholder="Mobile No." minlength="10" maxlength="10" name="mobile" required>
+                    </div>
+
+                    <div class="col-md-2 form-group">
+                        <label for="permanentLandline">Landline:</label>
+                        <input type="text" title="Contact Details(Landline)" only-numbers class="form-control" id="permanentLandline" ng-model="contactAddress.permanent.landline" placeholder="Landline No." maxlength="15" name="Landline">
+                    </div>
+
+                    <div class="col-md-3 form-group">
+                        <label for="landlord1">Landlord Name <span ng-show="contactAddress.permanent.addressType == 'rented'"><span class="requiredStar">*</span></span>:</label>
+                        <input type="text" class="form-control" id="landlord1" ng-model="contactAddress.permanent.landlord" placeholder="Landlord Name" maxlength="50" ng-required="contactAddress.permanent.addressType == 'rented'">
+                    </div>
+
+                    <div class="col-md-3 form-group">
+                        <label for="policeStation1">Nearest Police Station details<span class="requiredStar">*</span>:</label>
+                        <input type="text" class="form-control" id="policeStation1" ng-model="contactAddress.permanent.policeStation" placeholder="Police Station" maxlength="100" required>
+                    </div>
+
+
+                    <p style="border-bottom-color: #f16235; border-width: thin; border-bottom-style: solid;">Complete Current Address :- <label><input type="checkbox" value="" ng-model="contactAddress.isSameAsPermanent" ng-change="copyPermanentAddressToCurrent(contactAddress.isSameAsPermanent)"><strong>Same as Permanent</strong></label></p>
+                    <div class="col-md-6 form-group">
+                        <label for="currentAddress">Complete Address with pin code <span class="requiredStar">*</span>:</label>
+                        <textarea rows="2" class="form-control" id="currentAddress" ng-model="contactAddress.current.address" placeholder="Complete Address with pin code" maxlength="300" required ng-disabled="contactAddress.isSameAsPermanent"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Period for stay :-</p>
+                        <div class="col-md-6 form-group">
+                            <label for="currentFromDate">From Date<span class="requiredStar">*</span>:</label>
+                            <input type="text" class="form-control datetimepicker1" id="currentFromDate" ng-model="contactAddress.current.fromDate" placeholder="From" onkeydown="return false;" ng-disabled="contactAddress.isSameAsPermanent" required>
+
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="currentToDate">To Date<span class="requiredStar">*</span>:</label>
+                            <input type="text" class="form-control datetimepicker1" id="currentToDate" ng-model="contactAddress.current.toDate" placeholder="To" onkeydown="return false;" ng-disabled="contactAddress.isSameAsPermanent" required>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-2 form-group">
+                        <label>Address Type<span class="requiredStar">*</span>:</label>
+                        <select class="form-control" ng-model="contactAddress.current.addressType" ng-disabled="contactAddress.isSameAsPermanent" required>
+                            <option value="" selected="selected">Address Type</option>
+                            <option value="rented">Rented</option>
+                            <option value="own">Own House</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-2 form-group">
+                        <label for="currentAddressMobile">Mobile<span class="requiredStar">*</span>:</label>
+                        <input type="text" title="Contact Details(Mobile)" only-numbers class="form-control" id="currentAddressMobile" ng-model="contactAddress.current.mobile" placeholder="Mobile No." minlength="10" maxlength="10" name="mobile" required ng-disabled="contactAddress.isSameAsPermanent">
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label for="currentAddressLandline">Landline:</label>
+                        <input type="text" title="Contact Details(Landline)" only-numbers class="form-control" id="currentAddressLandline" ng-model="contactAddress.current.landline" placeholder="Landline No." maxlength="15" name="Landline" ng-disabled="contactAddress.isSameAsPermanent">
+                    </div>
+
+                    <div class="col-md-3 form-group">
+                        <label for="landlord2">Landlord Name <span ng-show="contactAddress.current.addressType == 'rented'"><span class="requiredStar">*</span></span>:</label>
+                        <input type="text" class="form-control" id="landlord2" ng-model="contactAddress.current.landlord" placeholder="Landlord Name" maxlength="50"  ng-disabled="contactAddress.isSameAsPermanent" ng-required="contactAddress.current.addressType == 'rented'">
+                    </div>
+
+                    <div class="col-md-3 form-group">
+                        <label for="policeStation2">Nearest Police Station details<span class="requiredStar">*</span>:</label>
+                        <input type="text" class="form-control" id="policeStation2" ng-model="contactAddress.current.policeStation" placeholder="Police Station" maxlength="100" ng-disabled="contactAddress.isSameAsPermanent" required>
+                    </div>
+
+
+                    <p style="border-bottom-color: #f16235; border-width: thin; border-bottom-style: solid;">Inter Mediate Address 1 :- <label><input type="checkbox" value="" ng-model="contactAddress.isIntermediateAddress"><strong>Have you Intermediate Address?</strong></label></p>
+                    <div ng-show="contactAddress.isIntermediateAddress">
+                        <div class="col-md-6 form-group">
+                            <label for="interMediateAddress">Complete Address with pin code <span class="requiredStar">*</span>:</label>
+                            <textarea rows="2" class="form-control" id="interMediateAddress" ng-model="contactAddress.interMediate.address" placeholder="Complete Address with pin code" maxlength="300" ng-required="contactAddress.isIntermediateAddress"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Period for stay :-</p>
+                            <div class="col-md-6 form-group">
+                                <label for="interMediateFromDate">From Date<span class="requiredStar">*</span>:</label>
+                                <input type="text" class="form-control datetimepicker1" id="interMediateFromDate" ng-model="contactAddress.interMediate.fromDate" onkeydown="return false;" placeholder="From" ng-required="contactAddress.isIntermediateAddress">
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label for="interMediateToDate">To Date<span class="requiredStar">*</span>:</label>
+                                <input type="text" class="form-control datetimepicker1" id="interMediateToDate" ng-model="contactAddress.interMediate.toDate" onkeydown="return false;" placeholder="To" ng-required="contactAddress.isIntermediateAddress">
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-2 form-group">
+                            <label>Address Type<span class="requiredStar">*</span>:</label>
+                            <select type="text" class="form-control" ng-model="contactAddress.interMediate.addressType" ng-required="contactAddress.isIntermediateAddress">
+                                <option value="" selected="selected">Address Type</option>
+                                <option value="rented">Rented</option>
+                                <option value="own">Own House</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-2 form-group">
+                            <label for="interMediateAddressMobile">Mobile<span class="requiredStar">*</span>:</label>
+                            <input type="text" title="Contact Details(Mobile)" only-numbers class="form-control" id="interMediateAddressMobile" ng-model="contactAddress.interMediate.mobile" placeholder="Mobile No." minlength="10" maxlength="10" name="mobile" ng-required="contactAddress.isIntermediateAddress">
+                        </div>
+                        <div class="col-md-2 form-group">
+                            <label for="interMediateLandline">Landline:</label>
+                            <input type="text" title="Contact Details(Landline)" only-numbers class="form-control" id="interMediateLandline" ng-model="contactAddress.interMediate.landline" placeholder="Landline No." maxlength="15" name="Landline">
+                        </div>
+
+
+                        <div class="col-md-3 form-group">
+                            <label for="landlord3">Landlord Name <span ng-show="contactAddress.interMediate.addressType == 'rented'"><span class="requiredStar">*</span></span>:</label>
+                            <input type="text" class="form-control" id="landlord3" ng-model="contactAddress.interMediate.landlord" placeholder="Landlord Name" maxlength="50" ng-required="contactAddress.isIntermediateAddress && (contactAddress.current.addressType == 'rented')">
+                        </div>
+
+                        <div class="col-md-3 form-group">
+                            <label for="policeStation3">Nearest Police Station details<span class="requiredStar">*</span>:</label>:
+                            <input type="text" class="form-control" id="policeStation3" ng-model="contactAddress.interMediate.policeStation" placeholder="Police Station" maxlength="100" ng-required="contactAddress.isIntermediateAddress">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 form-group" style="text-align: right">
+                        <button type="submit" class="btn btn-primary"> Save </button>
+                        <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                    </div>
+                    <!--href="#!/user-dashboard"-->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Contact Details end-->

@@ -1,0 +1,81 @@
+<div class="container">
+
+    <div ng-include="'./app/template/common/breadcrumb.tpl.html'"></div>
+
+<div class="row m_tb_30" ng-init="initiateModel()">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 p_lr_0" style="background-color: white;">
+        <ul class="login-page nav nav-tabs nav-justified">
+            <li class="active"><a class="p_tb_15" data-toggle="tab" data-target="#user"> User SignUp </a> </li>
+        </ul>
+        <div class="tab-content">
+            <!--TAB START-->
+            <div class="tab-pane fade in active" id="user">
+                <div class="row m_lr_20 m_tb_15">
+                    <form name="userSignUpForm" ng-submit="userManagement.signUpUser()">
+
+                        <div class="col-md-4  form-group">
+                            <label for="fName">First Name:</label>
+                            <input type="text" class="form-control" id="fName" placeholder="First Name" name="fName" maxlength="20" ng-model="userSignUpModel.fName" required>
+                        </div>
+                        <div class="col-md-4  form-group">
+                            <label for="mName">Middle Name:</label>
+                            <input type="text" class="form-control" id="mName" placeholder="Middle Name" maxlength="20" ng-model="userSignUpModel.mName" name="mName">
+                        </div>
+                        <div class="col-md-4  form-group">
+                            <label for="lName">Last Name:</label>
+                            <input type="text" class="form-control" id="lName" placeholder="Last Name" maxlength="20" ng-model="userSignUpModel.lName" name="lName">
+                        </div>
+
+                        <div class="col-md-6  form-group">
+                            <label for="mobile">Mobile No:</label>
+                            <input type="text" class="form-control" id="mobile" only-numbers placeholder="Mobile No." minlength="10" maxlength="10" name="mobile" ng-model="userSignUpModel.mobile" required>
+                        </div>
+
+
+                        <div class="col-md-6  form-group">
+                            <label for="gender">Gender : </label>
+                            <select type="text" class="form-control" id="gender" name="gender" ng-model="userSignUpModel.gender">
+                                <option value="">Gender</option>
+                                <option value="male" selected>Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col-md-12 form-group">
+                            <label for="user_email">Email Id:</label>
+                            <input type="email" class="form-control" id="user_email" placeholder="Enter Email Id" name="email" maxlength="40" ng-model="userSignUpModel.email" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="pwd">Password:</label>
+                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" maxlength="40" ng-model="userSignUpModel.password" required>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="confirm_pwd">Confirm Password:</label>
+                            <input type="password" class="form-control" id="confirm_pwd" placeholder="Confirm password" name="pwd" maxlength="40" ng-model="userSignUpModel.confirmPassword" required>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <div class="checkbox" style="text-align: right">
+                                <label><input type="checkbox" value="" ng-model="userSignUpModel.isAdmin"><strong>Is Admin</strong></label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group" style="text-align: right">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> SignUp</button>
+                            <a href="/admin-user-management" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel</a>
+                        </div>
+                        <!--href="#!/user-dashboard"-->
+                    </form>
+                </div>
+
+            </div>
+            <!--TAB END-->
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+</div>

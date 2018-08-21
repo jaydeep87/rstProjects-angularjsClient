@@ -1,0 +1,111 @@
+<div class="container">
+
+    <div ng-include="'./app/template/common/breadcrumb.tpl.html'"></div>
+
+    <div class="row m_lr_0 p_tb_15">
+
+        <h1 class="m_t_5">My Profile</h1>
+        <p>&nbsp;</p>
+        <ul class="nav nav-tabs nav-justified">
+            <li class="active"><a class="p_tb_15" data-toggle="tab" data-target="#personalProfile"> Personal Profile </a> </li>
+            <li><a class="p_tb_15" data-toggle="tab" data-target="#admin">Admin</a> </li>
+        </ul>
+        <!--data-toggle="tab"-->
+
+
+        <div class="tab-content">
+            <!--TAB START-->
+            <div class="tab-pane fade in active" id="personalProfile">
+                <div class="row m_lr_20 m_tb_15">
+                    <form name="userLoginForm">
+                        <div class="form-group">
+                            <label for="user_email">Email / Mobile No.:</label>
+                            <input type="text" class="form-control" id="user_email" placeholder="Email / Mobile No." name="email" ng-model="login.userLoginModel.emailOrMobile" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_pwd">Password:</label>
+                            <input type="password" class="form-control" id="user_pwd" placeholder="Enter password" name="pwd" ng-model="login.userLoginModel.password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Login</button>
+                        <!--href="#!/user-dashboard"-->
+                    </form>
+                </div>
+
+            </div>
+            <!--TAB END-->
+
+            <!--TAB START-->
+            <div class="tab-pane fade" id="admin">
+                <div class="row m_lr_20 m_tb_15">
+                    <form name="adminLoginForm" ng-submit="login.userLogin()">
+                        <div class="form-group">
+                            <label for="admin_email">Email / Mobile No.:</label>
+                            <input type="text" class="form-control" id="admin_email" placeholder="Email / Mobile No." name="email" ng-model="login.userLoginModel.emailOrMobile" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin_pwd">Password:</label>
+                            <input type="password" class="form-control" id="admin_pwd" placeholder="Enter password" name="pwd" ng-model="login.userLoginModel.password" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Login</button>
+                    </form>
+                </div>
+            </div>
+            <!--TAB END-->
+        </div>
+
+
+
+        <div class="tab-content">
+            <!--TAB START-->
+            <div class="tab-pane fade {{tab_name == 'basic_profile' ? 'in active' : ''}}" id="basic_profiless">
+                <div ng-include="'../template/doctor/ownerBasicProfile.tpl.html'"></div>
+            </div>
+            <!--TAB END-->
+
+            <!--TAB START-->
+            <div class="tab-pane photo fade {{tab_name == 'gallery' ? 'in active' : ''}}" id="upload_photos">
+                <p>&nbsp;</p>
+                <div ng-include="'../template/doctor/ownerUplodPhoto.tpl.html'"></div>
+            </div>
+            <!--TAB END-->
+
+            <!--TAB START-->
+            <div class="tab-pane fade {{tab_name == 'mci' ? 'in active' : ''}}" id="education_and_registration">
+                <div ng-include="'../template/doctor/ownerEducation.tpl.html'"></div>
+            </div>
+            <!--TAB END-->
+
+            <!--TAB START-->
+            <div class="tab-pane fade {{tab_name == 'experience' ? 'in active' : ''}}" id="experience">
+                <div ng-include="'../template/doctor/ownerExperence.tpl.html'"></div>
+
+            </div>
+            <!--TAB END-->
+
+            <!--TAB START-->
+            <div class="tab-pane fade {{tab_name == 'work_schedule' ? 'in active' : ''}}" id="work_schedule">
+                <div ng-include="'../template/doctor/ownerWorkShedule.tpl.html'"></div>
+            </div>
+            <!--TAB END-->
+
+            <!--TAB START-->
+            <div class="tab-pane fade {{tab_name == 'reward' ? 'in active' : ''}}" id="rewardRecognization">
+                <div ng-include="'../template/doctor/ownerReward.tpl.html'"></div>
+            </div>
+            <!--TAB END-->
+
+            <!--TAB START-->
+            <div class="tab-pane fade {{tab_name == 'membership' ? 'in active' : ''}}" id="Membership">
+                <div ng-include="'../template/doctor/ownerMembership.tpl.html'"></div>
+            </div>
+            <!--TAB END-->
+            <!--TAB START-->
+            <div class="tab-pane fade {{tab_name == 'account' ? 'in active' : ''}}" id="payment_history">
+                <div ng-include="'../template/doctor/payment_history.html'"></div>
+            </div>
+            <!--TAB END-->
+
+        </div>
+        </div>
+    </div>

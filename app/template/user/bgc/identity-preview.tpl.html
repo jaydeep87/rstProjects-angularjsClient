@@ -1,0 +1,73 @@
+<!--Identity Details start-->
+<div class="container">
+
+    <ul class="sub-body-page nav nav-tabs sub-tab-right-align">
+        <li class="active"><a href="" data-toggle="tab" data-target="#identityDetails">Preview</a></li>
+        <li><a href="" data-toggle="tab" data-target="#identityDetailsEdit">Add/Edit</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="identityDetails" class="tab-pane fade in active">
+
+            <div class="col-md-12 p_lr_0 p_b_0" style="border: solid;border-color: #00627e;">
+                <h3>Identity Details</h3>
+                <h6> <strong>Note :- </strong>Identity verification details .</h6>
+                <table class="table table-striped" style="margin-bottom: 0px">
+                    <thead>
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Passport / Driving License No.</th>
+                        <th>Date Of Issue</th>
+                        <th>Date Of Expiry</th>
+                        <th>Place Of Issue</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Passport / Driving License No.</td>
+                        <td>Date Of Issue</td>
+                        <td>Date Of Expiry</td>
+                        <td>Place Of Issue</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div id="identityDetailsEdit" class="tab-pane fade">
+            <div class="col-md-12" style="border: solid; border-color: #f16235;">
+                <p>&nbsp;</p>
+                <form name="userIdentityDetailsForm" ng-submit="userDashboard.addUpdateIdentityDetails()">
+
+                    <div class="col-md-3 form-group">
+                        <label for="passportNo">Passport / Driving License No.:</label>
+                        <input type="text" class="form-control" id="passportNo" placeholder="Passport / Driving License No">
+                    </div>
+
+                    <div class="col-md-3 form-group">
+                        <label for="dateOfIssue">Date Of Issue:</label>
+                        <input type="text" class="form-control" id="dateOfIssue" placeholder="Date Of Issue">
+                    </div>
+
+                    <div class="col-md-3 form-group">
+                        <label for="dateOfExpiry">Date Of Expiry:</label>
+                        <input type="text" class="form-control" id="dateOfExpiry" placeholder="Date Of Expiry">
+                    </div>
+
+                    <div class="col-md-3 form-group">
+                        <label for="palceOfIssue">Place Of Issue:</label>
+                        <input type="text" class="form-control" id="palceOfIssue" placeholder="Place of Issue">
+                    </div>
+
+                    <div class="col-md-12 form-group" style="text-align: right">
+                        <button type="submit" class="btn btn-primary"> Save </button>
+                        <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                    </div>
+                    <!--href="#!/user-dashboard"-->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Identity Details end-->

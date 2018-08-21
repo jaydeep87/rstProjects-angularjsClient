@@ -1,0 +1,47 @@
+
+<!--<section class="container">-->
+    <!--<div class="header">-->
+        <!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
+            <!--<div class="container-fluid">-->
+                <!--<div class="navbar-header">-->
+                    <!--<a class="navbar-brand" href="#">WebSiteName</a>-->
+                <!--</div>-->
+                <!--<ul class="nav navbar-nav">-->
+                    <!--<li class="active"><a href="#">Home</a></li>-->
+                    <!--<li><a href="#">Page 1</a></li>-->
+                    <!--<li><a href="#">Page 2</a></li>-->
+                    <!--<li><a href="#">Page 3</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</nav>-->
+    <!--</div>-->
+<!--</section>-->
+
+
+
+
+
+<section class="container">
+    <div class="header">
+        <div ng-show="isUserLogin || isAdminLogin">
+        <a href="{{userData.isAdmin ? 'admin-dashboard' : 'user-bgc?tab_id=1'}}" class="active">AAPS</a>
+        <a ng-show="userData.isAdmin" href="admin-user-management">User Management</a>
+        <a ng-show="userData.isAdmin" href="admin-employee-management">Employee Management</a>
+        <a ng-show="userData.isAdmin" href="admin-shift-schedule">Shift Schedule</a>
+        <a href="user-bgc?tab_id=1">BGC</a>
+        <!--<a href="#log">Log</a>-->
+        <!--<a href="#schedule">Shift Schedule</a>-->
+        <!--<a href="#export">Export</a>-->
+        <!--<a href="#hr">HR</a>-->
+        </div>
+        <div class="header-right">
+            <a href="#" class="logo"><img class="logo-size" src="http://rostantechnologies.com/wp-content/uploads/2018/04/rostar11.png"></a>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!--<p>THis is header</p>-->

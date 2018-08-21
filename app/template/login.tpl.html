@@ -1,0 +1,58 @@
+<div class="container">
+    <h3 align="center" class="m_t_30"><strong>Welcome to <span class="theme-color">R</span><span style="color: #f15b2b">O</span><span class="theme-color">STAN</span> Admin Panel...!!!</strong></h3>
+    <div class="row m_tb_30">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 p_lr_0" style="background-color: white;">
+            <ul class="login-page nav nav-tabs nav-justified">
+                <li class="active"><a class="p_tb_15" data-toggle="tab" data-target="#user" ng-click="login.userLoginModel.isAdmin=false"> User </a> </li>
+                <li><a class="p_tb_15" data-toggle="tab" data-target="#admin" ng-click="login.userLoginModel.isAdmin=true">Admin</a> </li>
+            </ul>
+            <div class="tab-content">
+                <!--TAB START-->
+                <div class="tab-pane fade in active" id="user">
+                    <div class="row m_lr_20 m_tb_15">
+                        <form name="userLoginForm" ng-submit="login.userLogin()">
+                        <div class="form-group">
+                            <label for="user_email">Email / Mobile No.:</label>
+                            <input type="text" class="form-control" id="user_email" placeholder="Email / Mobile No." name="email" ng-model="login.userLoginModel.emailOrMobile" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_pwd">Password:</label>
+                            <input type="password" class="form-control" id="user_pwd" placeholder="Enter password" name="pwd" ng-model="login.userLoginModel.password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Login</button>
+                            <!--href="#!/user-dashboard"-->
+                    </form>
+                    </div>
+
+                </div>
+                <!--TAB END-->
+
+                <!--TAB START-->
+                <div class="tab-pane fade" id="admin">
+                    <div class="row m_lr_20 m_tb_15">
+                        <form name="adminLoginForm" ng-submit="login.userLogin()">
+                            <div class="form-group">
+                                <label for="admin_email">Email / Mobile No.:</label>
+                                <input type="text" class="form-control" id="admin_email" placeholder="Email / Mobile No." name="email" ng-model="login.userLoginModel.emailOrMobile" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="admin_pwd">Password:</label>
+                                <input type="password" class="form-control" id="admin_pwd" placeholder="Enter password" name="pwd" ng-model="login.userLoginModel.password" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Login</button>
+                        </form>
+                    </div>
+                </div>
+                <!--TAB END-->
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+
+    </div>
+
+</div>
+
+
+<!--<p>Body of contents</p>-->

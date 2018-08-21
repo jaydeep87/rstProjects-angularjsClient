@@ -1,0 +1,107 @@
+<div class="container">
+
+    <div ng-include="'./app/template/common/breadcrumb.tpl.html'"></div>
+
+    <div class="row m_lr_0 p_tb_15">
+        <h3 style="text-align: center; border-bottom: solid;  border-bottom-color: #f16235; padding-bottom: 5px">BGC Form</h3>
+        <h6> <strong>Note :- </strong>Please provide complete and correct Information.Your BGC form would not be accepted without all relevant supporting documents mentioned below.</h6>
+
+
+        <ul class="body-page nav nav-tabs">
+            <li class="{{tab_id == 1 ? 'active' : ''}}"><a href="/user-bgc?tab_id=1" data-target="#m_personalDetails">Personal Details</a></li>
+            <li class="{{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 2 ? 'active' : ''}}"><a href="/user-bgc?tab_id=2" data-target="#m_contactDetails" ng-disabled="!userProfileModel.isBGC">Contact Details</a></li>
+            <li class="{{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 3 ? 'active' : ''}}"><a href="/user-bgc?tab_id=3" data-target="#m_educationDetails" ng-disabled="!userProfileModel.isBGC">Education Qualifications</a></li>
+            <li class="{{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 4 ? 'active' : ''}}"><a href="/user-bgc?tab_id=4" data-target="#m_employmentDetails" ng-disabled="!userProfileModel.isBGC">Employment Verifications</a></li>
+            <li class="{{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 5 ? 'active' : ''}}"><a href="/user-bgc?tab_id=5" data-target="#m_references" ng-disabled="!userProfileModel.isBGC">References</a></li>
+            <li class="{{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 6 ? 'active' : ''}}"><a href="/user-bgc?tab_id=6" data-target="#m_identity" ng-disabled="!userProfileModel.isBGC">Identity Details</a></li>
+            <li class="{{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 7 ? 'active' : ''}}"><a href="/user-bgc?tab_id=7" data-target="#m_documents" ng-disabled="!userProfileModel.isBGC">Document Gallery</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="m_personalDetails" class="tab-pane fade {{tab_id == 1 ? 'in active' : ''}}" ng-include="'./app/template/user/bgc/personal-preview.tpl.html'"></div>
+            <div id="m_contactDetails" class="tab-pane fade {{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 2 ? 'in active' : ''}}" ng-include="'./app/template/user/bgc/contact-preview.tpl.html'"></div>
+            <div id="m_educationDetails" class="tab-pane fade {{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 3 ? 'in active' : ''}}"  ng-include="'./app/template/user/bgc/education-preview.tpl.html'"></div>
+            <div id="m_employmentDetails" class="tab-pane fade {{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 4 ? 'in active' : ''}}" ng-include="'./app/template/user/bgc/employment-preview.tpl.html'"></div>
+            <div id="m_references" class="tab-pane fade {{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 5 ? 'in active' : ''}}" ng-include="'./app/template/user/bgc/reference-preview.tpl.html'"></div>
+            <div id="m_identity" class="tab-pane fade {{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 6 ? 'in active' : ''}}" ng-include="'./app/template/user/bgc/identity-preview.tpl.html'"></div>
+
+            <div id="m_documents" class="tab-pane fade {{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 7 ? 'in active' : ''}}">
+                <div class="row m_lr_20" style="padding-top: 15px">
+                    <strong style="border-bottom-color: #f16235; border-width: medium; border-bottom-style: solid">Upload documents :</strong>
+                    <p>&nbsp;</p>
+
+                    <form>
+                        <div class="col-md-12 form-group" style="text-align: right">
+                            <button type="submit" class="btn btn-primary"> Save </button>
+                            <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .table>thead>tr>th {
+        vertical-align: middle;
+        text-align: center;
+    }
+    .table>tbody>tr>td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    body {
+        font-size: 12px;
+    }
+    .body-page.nav-tabs>li.active>a, .login-page.nav-tabs>li.active>a:focus, .login-page.nav-tabs>li.active>a:hover {
+        padding-bottom: 10px;
+        padding-top: 10px;
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .body-page.nav-tabs>li>a {
+        margin-right: 2px;
+        line-height: 1.42857143;
+        border: 1px solid transparent;
+        border-radius: 4px 4px 0 0;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: center;
+    }
+
+    .sub-body-page.nav-tabs>li.active>a, .login-page.nav-tabs>li.active>a:focus, .login-page.nav-tabs>li.active>a:hover {
+        padding-bottom: 4px;
+        padding-top: 5px;
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        color:white;
+        background-color: #00627e;
+    }
+    .sub-body-page.nav-tabs>li>a {
+        margin-right: 2px;
+        line-height: 1.42857143;
+        border: 1px solid transparent;
+        border-radius: 4px 4px 0 0;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: center;
+    }
+    .sub-tab-right-align{
+        float: right;
+    }
+    h3{
+        padding-bottom: 10px;
+    }
+
+
+</style>
