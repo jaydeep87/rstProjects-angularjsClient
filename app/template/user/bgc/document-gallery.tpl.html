@@ -41,24 +41,12 @@
                 </form>
             </div>
 
-            <table class="table table-striped" ng-if="educationalDocumentList.length" style="margin-bottom: 0px">
-                <thead>
-                <tr>
-                    <th class="col-md-1">S.No.</th>
-                    <th class="col-md-4">Name</th>
-                    <th class="col-md-3">Document</th>
-                    <th class="col-md-4">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="education in educationalDocumentList track by $index">
-                    <td>1</td>
-                    <td>{{education.name}}</td>
-                    <td><img ng-if="education.fileURL" src="{{education.fileURL ? serverBaseURL + education.fileURL : ''}}" style="height: 60px;width: 65px;"></td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="row" ng-if="educationalDocumentList.length">
+                <div class="col-md-3" style="text-align: center" ng-repeat="education in educationalDocumentList track by $index">
+                    <img ng-if="education.fileURL" src="{{education.fileURL ? serverBaseURL + education.fileURL : ''}}" style="height: 200px;width: 200px;">
+                    <p>{{education.name}}</p>
+                </div>
+            </div>
 
 
         </div>

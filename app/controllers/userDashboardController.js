@@ -1050,7 +1050,7 @@
                 $scope.inputData.bgcId =  LocalStorageService.get('user_bgc_id');
                 $rootScope.loader = true;
                 userDashboardService.getUserBGCEducationalDocumentDetails($scope.inputData).success(function (result) {
-                    DebugService.logData(result);
+                   // DebugService.logData(result);
                     $rootScope.loader = false;
                     if (result.statusCode == 200) {
                         $scope.serverBaseURL = result.serverBaseURL;
@@ -1103,7 +1103,7 @@
                 console.log(uploadUrl);
                 userDashboardService.uploadFileWithData(file, $scope.educationalDocumentModel, uploadUrl).success(function (result) {
                     $scope.loading = false;
-                     DebugService.logData(result);
+                   //  DebugService.logData(result);
                     if (result.statusCode == 200) {
                         angular.element("input[type='file']").val(null);
                         $rootScope.showHideSuccessMessage(result.statusMessage);
