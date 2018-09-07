@@ -164,6 +164,9 @@
         };
 
 
+
+
+
         /***************** *************************************
          functionName:getOnlyDate
          inputJSON:
@@ -181,6 +184,27 @@
             $('.datetimepicker1').datetimepicker({
                 format: 'L',
                 maxDate: date
+            });
+        };
+
+
+
+        /***************** *************************************
+         functionName:getFutureDate
+         inputJSON:
+         outputJSON:
+         Description: initiate date in datepicker
+         UseIn:user-bgc.tpl.html
+         OwnerName: Jaydeep Verma
+         Date:   05/09/2018
+
+         *******************************************************/
+
+        $scope.getFutureDate = function () {
+            var date = new Date();
+            $('.datetimepicker2').datetimepicker({
+                format: 'L',
+                minDate: date
             });
         };
 
@@ -566,18 +590,53 @@
          Date:   20/08/2018
 
          *******************************************************/
+        $scope.bgcEmploymentModel = {
+            'isExperienced':true,
+            'employmentList':[{
+                'companyName':'',
+                'companyAddressWithPin':'',
+                'remuneration':'',
+                'designation':'',
+                'employeeId':'',
+                'fromDate':'',
+                'toDate':'',
+                'period':'',
+                'hrName':'',
+                'hrContact':'',
+                'hrEmail':'',
+                'supervisorName':'',
+                'supervisorContact':'',
+                'supervisorEmail':'',
+                'reasonForLeaving':''
+            }],
+            'canVerifyIn15Days':'No',
+            'dateForVerification':''
+
+
+        };
+
         this.getEmploymentDetails = function(){
             if(LocalStorageService.get('authToken') && LocalStorageService.get('user_bgc_id')){
                 $scope.inputData = {'authToken': LocalStorageService.get('authToken')};
                 $scope.inputData.bgcId =  LocalStorageService.get('user_bgc_id');
                 $rootScope.loader = true;
                 userDashboardService.getUserEmploymentById($scope.inputData).success(function (result) {
-                      DebugService.logData(result);
+                      //DebugService.logData(result);
                     $rootScope.loader = false;
                     if (result.statusCode == 200) {
                         if(result.data){
-
+                            if(result.data.length){
+                                $scope.bgcEmploymentModel.employmentList = result.data;
+                            }
+                            else
+                            {
+                                $scope.bgcEmploymentModel.employmentList = [];
+                            }
                         }
+                        $scope.bgcEmploymentModel.isExperienced = result.isExperienced;
+                        $scope.bgcEmploymentModel.canVerifyIn15Days = result.canVerifyIn15Days;
+                        $scope.bgcEmploymentModel.dateForVerification = result.dateForVerification;
+
                         LocalStorageService.set('current_url', $location.path());
                     } else {
                         $rootScope.showHideErrorMessage(result.statusMessage);
@@ -605,25 +664,6 @@
          Date:   21/08/2018
 
          *******************************************************/
-        $scope.bgcEmploymentModel = {
-            'isExperienced':true,
-            'employmentList':[{
-                'companyName':'',
-                'companyAddressWithPin':'companyAddressWithPin',
-                'remuneration':'50000',
-                'designation':'designation',
-                'employeeId':'employeeId',
-                'reasonForLeaving':'reasonForLeaving',
-                'fromDate':'fromDate',
-                'toDate':'toDate',
-                'hrName':'hrName',
-                'hrContact':'hrContact',
-                'hrEmail':'hrEmail',
-                'supervisorName':'supervisorName',
-                'supervisorContact':'supervisorContact',
-                'supervisorEmail':'supervisorEmail'
-            }]
-        };
 
 
         $scope.addNewEmployment = function(){
@@ -706,19 +746,19 @@
                 $scope.bgcEmploymentModel.employmentList = [];
                 $scope.bgcEmploymentModel.employmentList.push({
                     'companyName': '',
-                    'companyAddressWithPin': 'companyAddressWithPin',
-                    'remuneration': '50000',
-                    'designation': 'designation',
-                    'employeeId': 'employeeId',
-                    'reasonForLeaving': 'reasonForLeaving',
-                    'fromDate': 'fromDate',
-                    'toDate': 'toDate',
-                    'hrName': 'hrName',
-                    'hrContact': 'hrContact',
-                    'hrEmail': 'hrEmail',
-                    'supervisorName': 'supervisorName',
-                    'supervisorContact': 'supervisorContact',
-                    'supervisorEmail': 'supervisorEmail'
+                    'companyAddressWithPin': '',
+                    'remuneration': '',
+                    'designation': '',
+                    'employeeId': '',
+                    'reasonForLeaving': '',
+                    'fromDate': '',
+                    'toDate': '',
+                    'hrName': '',
+                    'hrContact': '',
+                    'hrEmail': '',
+                    'supervisorName': '',
+                    'supervisorContact': '',
+                    'supervisorEmail': ''
                 });
             }
         };
@@ -727,17 +767,34 @@
             if(LocalStorageService.get('authToken') && LocalStorageService.get('user_bgc_id')){
                 $scope.inputData = {'authToken': LocalStorageService.get('authToken')};
                 $scope.inputData.bgcId =  LocalStorageService.get('user_bgc_id');
+                if($scope.bgcEmploymentModel.employmentList.length){
+                    angular.forEach($scope.bgcEmploymentModel.employmentList, function(e, index){
+                        e.fromDate = $('#employmentFromDate'+index).val();
+                        e.toDate = $('#employmentToDate'+index).val();
+                    })
+                }
+                if($scope.bgcEmploymentModel.canVerifyIn15Days.toLowerCase() == 'no'){
+                    $scope.bgcEmploymentModel.dateForVerification = $('#dateForVerification').val();
+                }
+                else
+                {
+                    $scope.bgcEmploymentModel.dateForVerification = moment(new Date()).format("DD/MM/YYYY");
+                }
                 $scope.inputData.employmentList =  [];
-                $scope.inputData.employmentList.concat(numeric)
-                $scope.inputData.employmentList.push($scope.updateEducationDetails);
-                if($scope.inputData.educationQualification.length && $scope.updateEducationDetails.passingMonthYear){
+                $scope.inputData.employmentList = $scope.bgcEmploymentModel.employmentList;
+                $scope.inputData.isExperienced =  $scope.bgcEmploymentModel.isExperienced ? $scope.bgcEmploymentModel.isExperienced : false;
+                $scope.inputData.canVerifyIn15Days =  $scope.bgcEmploymentModel.canVerifyIn15Days;
+                $scope.inputData.dateForVerification =  $scope.bgcEmploymentModel.dateForVerification;
+
+                //$scope.inputData.employmentList.concat();
+                if(($scope.inputData.isExperienced && $scope.inputData.employmentList.length) || !$scope.inputData.isExperienced){
                     $rootScope.loader = true;
-                    userDashboardService.updateUserBGCEducationDetails($scope.inputData).success(function (result) {
-                        // DebugService.logData(result);
+                    userDashboardService.updateUserBGCEmploymentDetails($scope.inputData).success(function (result) {
+                         //DebugService.logData(result);
                         $rootScope.loader = false;
                         if (result.statusCode == 200) {
                             $rootScope.showHideSuccessMessage(result.statusMessage);
-                            self.getEducationDetails();
+                            self.getEmploymentDetails();
                         } else {
                             $rootScope.showHideErrorMessage(result.statusMessage);
                             //DebugService.logData(result);
@@ -755,6 +812,314 @@
             }
 
         };
+
+
+        /***************** *************************************
+         functionName:getReferenceDetails
+         inputJSON:
+         outputJSON:
+         Description: add bgc form
+         UseIn:user-bgc.tpl.html
+         OwnerName: Jaydeep Verma
+         Date:  06/09/2018
+
+         *******************************************************/
+        $scope.bgcReferenceModel = {
+            'referenceList': [{
+                'name': '',
+                'contact': '',
+                'email': ''
+            },
+                {
+                    'name': '',
+                    'contact': '',
+                    'email': ''
+                }]
+        };
+
+        this.getReferenceDetails = function(){
+            if(LocalStorageService.get('authToken') && LocalStorageService.get('user_bgc_id')){
+                $scope.inputData = {'authToken': LocalStorageService.get('authToken')};
+                $scope.inputData.bgcId =  LocalStorageService.get('user_bgc_id');
+                $rootScope.loader = true;
+                userDashboardService.getUserReferenceById($scope.inputData).success(function (result) {
+                   // DebugService.logData(result);
+                    $rootScope.loader = false;
+                    if (result.statusCode == 200) {
+                        if (result.data) {
+                            $scope.bgcReferenceModel.referenceList = result.data;
+                        }
+                        else
+                        {
+                            $scope.bgcReferenceModel = {
+                                'referenceList': [{
+                                    'name': '',
+                                    'contact': '',
+                                    'email': ''
+                                },
+                                    {
+                                        'name': '',
+                                        'contact': '',
+                                        'email': ''
+                                    }]
+                            };
+                        }
+                        LocalStorageService.set('current_url', $location.path());
+                    } else {
+                        $rootScope.showHideErrorMessage(result.statusMessage);
+                        //DebugService.logData(result);
+                    }
+                })
+
+            }
+            else
+            {
+                LocalStorageService.clear();
+                $location.path('/');
+            }
+
+        };
+
+        /***************** *************************************
+         functionName:addUpdateReferenceDetails
+         inputJSON:
+         outputJSON:
+         Description: add bgc form
+         UseIn:user-bgc.tpl.html
+         OwnerName: Jaydeep Verma
+         Date:  06/09/2018
+
+         *******************************************************/
+
+        this.addUpdateReferenceDetails = function(){
+            if(LocalStorageService.get('authToken') && LocalStorageService.get('user_bgc_id')){
+                $scope.inputData = {'authToken': LocalStorageService.get('authToken')};
+                $scope.inputData.bgcId =  LocalStorageService.get('user_bgc_id');
+                $scope.inputData.referenceList =  [];
+                $scope.inputData.referenceList = $scope.bgcReferenceModel.referenceList;
+                if($scope.inputData.referenceList.length){
+                    $rootScope.loader = true;
+                    userDashboardService.updateUserBGCReferenceDetails($scope.inputData).success(function (result) {
+                        //DebugService.logData(result);
+                        $rootScope.loader = false;
+                        if (result.statusCode == 200) {
+                            $rootScope.showHideSuccessMessage(result.statusMessage);
+                            self.getReferenceDetails();
+                        } else {
+                            $rootScope.showHideErrorMessage(result.statusMessage);
+                            //DebugService.logData(result);
+                        }
+                    })
+                }
+                else
+                {
+                    $rootScope.showHideErrorMessage("Please fill all required fields...!!!");
+                }
+            }
+            else
+            {
+                $location.path('/');
+            }
+
+        };
+
+        /***************** *************************************
+         functionName:getIdentityDetails
+         inputJSON:
+         outputJSON:
+         Description: add bgc form
+         UseIn:user-bgc.tpl.html
+         OwnerName: Jaydeep Verma
+         Date:  06/09/2018
+
+         *******************************************************/
+        $scope.bgcIdentityModel = {
+            'identityList': [{
+                "type":"",
+                "number": "",
+                "dateOfIssue": "",
+                "dateOfExpiry":"",
+                "placeOfIssue":""
+            }]
+        };
+
+        this.getIdentityDetails = function(){
+            if(LocalStorageService.get('authToken') && LocalStorageService.get('user_bgc_id')){
+                $scope.inputData = {'authToken': LocalStorageService.get('authToken')};
+                $scope.inputData.bgcId =  LocalStorageService.get('user_bgc_id');
+                $rootScope.loader = true;
+                userDashboardService.getUserIdentityById($scope.inputData).success(function (result) {
+                    //DebugService.logData(result);
+                    $rootScope.loader = false;
+                    if (result.statusCode == 200) {
+                        if (result.data) {
+                            $scope.bgcIdentityModel.identityList = result.data;
+                        }
+                        else
+                        {
+                            $scope.bgcIdentityModel = {
+                                'identityList': [{
+                                    "type":"",
+                                    "number": "",
+                                    "dateOfIssue": "",
+                                    "dateOfExpiry":"",
+                                    "placeOfIssue":""
+                                }]
+                            };
+                        }
+                        LocalStorageService.set('current_url', $location.path());
+                    } else {
+                        $rootScope.showHideErrorMessage(result.statusMessage);
+                        //DebugService.logData(result);
+                    }
+                })
+
+            }
+            else
+            {
+                LocalStorageService.clear();
+                $location.path('/');
+            }
+
+        };
+
+
+        /***************** *************************************
+         functionName:addUpdateReferenceDetails
+         inputJSON:
+         outputJSON:
+         Description: add bgc form
+         UseIn:user-bgc.tpl.html
+         OwnerName: Jaydeep Verma
+         Date:  06/09/2018
+
+         *******************************************************/
+
+        this.addUpdateIdentityDetails = function(){
+            if(LocalStorageService.get('authToken') && LocalStorageService.get('user_bgc_id')){
+                $scope.inputData = {'authToken': LocalStorageService.get('authToken')};
+                $scope.inputData.bgcId =  LocalStorageService.get('user_bgc_id');
+                if($scope.bgcIdentityModel.identityList.length){
+                    angular.forEach($scope.bgcIdentityModel.identityList, function(e, index){
+                        e.dateOfIssue = $('#dateOfIssue'+index).val();
+                        e.dateOfExpiry = $('#dateOfExpiry'+index).val();
+                    })
+                }
+                $scope.inputData.identityList =  [];
+                $scope.inputData.identityList = $scope.bgcIdentityModel.identityList;
+                if($scope.inputData.identityList.length){
+                    $rootScope.loader = true;
+                    userDashboardService.updateUserBGCIdentityDetails($scope.inputData).success(function (result) {
+                        //DebugService.logData(result);
+                        $rootScope.loader = false;
+                        if (result.statusCode == 200) {
+                            $rootScope.showHideSuccessMessage(result.statusMessage);
+                            self.getIdentityDetails();
+                        } else {
+                            $rootScope.showHideErrorMessage(result.statusMessage);
+                            //DebugService.logData(result);
+                        }
+                    })
+                }
+                else
+                {
+                    $rootScope.showHideErrorMessage("Please fill all required fields...!!!");
+                }
+            }
+            else
+            {
+                $location.path('/');
+            }
+
+        };
+
+        /***************** *************************************
+         functionName:getUserBGCEducationalDocumentDetails
+         inputJSON:
+         outputJSON:
+         Description: upload educational documents
+         UseIn:user-bgc.tpl.html
+         OwnerName: Jaydeep Verma
+         Date:   07/09/2018
+
+         *******************************************************/
+
+        this.getUserBGCEducationalDocumentDetails = function(){
+            if(LocalStorageService.get('authToken') && LocalStorageService.get('user_bgc_id')){
+                $scope.inputData = {'authToken': LocalStorageService.get('authToken')};
+                $scope.inputData.bgcId =  LocalStorageService.get('user_bgc_id');
+                $rootScope.loader = true;
+                userDashboardService.getUserBGCEducationalDocumentDetails($scope.inputData).success(function (result) {
+                    DebugService.logData(result);
+                    $rootScope.loader = false;
+                    if (result.statusCode == 200) {
+                        $scope.serverBaseURL = result.serverBaseURL;
+                        if (result.data) {
+                            $scope.educationalDocumentList = result.data;
+                        }
+
+                        LocalStorageService.set('current_url', $location.path());
+                    } else {
+                        $rootScope.showHideErrorMessage(result.statusMessage);
+                        //DebugService.logData(result);
+                    }
+                })
+
+            }
+            else
+            {
+                LocalStorageService.clear();
+                $location.path('/');
+            }
+
+        };
+
+
+        /***************** *************************************
+         functionName:uploadEducationalDocuments
+         inputJSON:
+         outputJSON:
+         Description: upload educational documents
+         UseIn:user-bgc.tpl.html
+         OwnerName: Jaydeep Verma
+         Date:   07/09/2018
+
+         *******************************************************/
+
+        $scope.educationalDocumentModel = {
+            name:''
+        };
+
+        this.uploadEducationalDocuments = function () {
+            var file = $('#education_file').prop('files');
+            var ext = file[0].name.match(/\.(.+)$/)[1];
+            if(angular.lowercase(ext) ==='jpg' || angular.lowercase(ext) ==='jpeg' || angular.lowercase(ext) ==='png' || angular.lowercase(ext) ==='pdf'){
+                if (file.length < -1) return false;
+                $scope.loading = true;
+                $scope.educationalDocumentModel.authToken = LocalStorageService.get('authToken');
+                $scope.educationalDocumentModel._id = LocalStorageService.get('user_bgc_id');
+                //alert(userId);
+                var uploadUrl = apiVersion+'user/upload-user-educational-document';
+                console.log(uploadUrl);
+                userDashboardService.uploadFileWithData(file, $scope.educationalDocumentModel, uploadUrl).success(function (result) {
+                    $scope.loading = false;
+                     DebugService.logData(result);
+                    if (result.statusCode == 200) {
+                        angular.element("input[type='file']").val(null);
+                        $rootScope.showHideSuccessMessage(result.statusMessage);
+                        self.getUserBGCEducationalDocumentDetails();
+                    }
+                    else {
+                        $rootScope.showHideSuccessMessage(result.statusMessage);
+                        // DebugService.logData(result.statusMessage);
+                    }
+                });
+            }
+            else{
+                alert("Please select Valid File...!!!");
+            }
+        };
+
 
 
 
@@ -780,6 +1145,16 @@
                 else if($scope.tab_id == 4){
                     self.getEmploymentDetails();
                 }
+                else if($scope.tab_id == 5){
+                    self.getReferenceDetails();
+                }
+                else if($scope.tab_id == 6){
+                    self.getIdentityDetails();
+                }
+                else if($scope.tab_id == 7){
+                    self.getUserBGCEducationalDocumentDetails();
+                }
+
             }
         }
         else

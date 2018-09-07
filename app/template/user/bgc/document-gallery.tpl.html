@@ -1,0 +1,175 @@
+<div class="container">
+    <ul class="sub-body-page nav nav-tabs">
+        <li class="active"><a href="" data-toggle="tab" data-target="#educational">Educational</a></li>
+        <li><a href="" data-toggle="tab" data-target="#employment">Employment</a></li>
+        <li><a href="" data-toggle="tab" data-target="#identityAndAddress">Identity & Address</a></li>
+        <li><a href="" data-toggle="tab" data-target="#other">Other</a></li>
+    </ul>
+
+    <div class="tab-content p_lr_10" style="min-height: 250px;">
+        <div id="educational" class="tab-pane fade in active">
+
+            <h3>Educational Documents</h3>
+
+            <button type="button" class="btn btn-link waves-effect collapsed"
+                    style="font-size: 16px;" data-toggle="collapse" data-target="#educationToggle">
+                <i class="fa fa-plus fa-fw"></i> Add New
+            </button>
+
+            <div class="collapse" id="educationToggle">
+                <form role="form" ng-submit="userDashboard.uploadEducationalDocuments()">
+                    <div class="row p_lr_0">
+                        <div class="col-md-6">
+                            <label for="educationName">Name of Document<span class="requiredStar">*</span>:</label>
+                            <input type="text" title="Document Name" class="form-control" id="educationName"
+                                   placeholder="Document Name" maxlength="100" ng-model="educationalDocumentModel.name" required>
+                        </div>
+
+                        <div class="col-md-4 form-group">
+                            <label>Select File(jpg,png or pdf) <span class="requiredStar">*</span>:</label>
+                            <input id="education_file" type="file" class="upload"
+                                   title="Profile Image" accept=".png, .jpg, .jpeg, .pdf">
+
+                        </div>
+
+                        <div class="col-md-2 form-group" style="text-align: right">
+                            <p>&nbsp;</p>
+                            <button type="submit" class="btn btn-primary"> Upload</button>
+                            <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <table class="table table-striped" ng-if="educationalDocumentList.length" style="margin-bottom: 0px">
+                <thead>
+                <tr>
+                    <th class="col-md-1">S.No.</th>
+                    <th class="col-md-4">Name</th>
+                    <th class="col-md-3">Document</th>
+                    <th class="col-md-4">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="education in educationalDocumentList track by $index">
+                    <td>1</td>
+                    <td>{{education.name}}</td>
+                    <td><img ng-if="education.fileURL" src="{{education.fileURL ? serverBaseURL + education.fileURL : ''}}" style="height: 60px;width: 65px;"></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+        <div id="employment" class="tab-pane fade">
+
+            <h3>Employments Documents</h3>
+
+            <button type="button" class="btn btn-link waves-effect collapsed"
+                    style="font-size: 16px;" data-toggle="collapse" data-target="#employmentToggle">
+                <i class="fa fa-plus fa-fw"></i> Add New
+            </button>
+
+            <div class="collapse" id="employmentToggle">
+                <form role="form" ng-submit="">
+                    <div class="row p_lr_0">
+                        <div class="col-md-6">
+                            <label for="employmentName">Name of Document<span class="requiredStar">*</span>:</label>
+                            <input type="text" title="Document Name" class="form-control" id="employmentName"
+                                   placeholder="Document Name" maxlength="100" required>
+                        </div>
+
+                        <div class="col-md-4 form-group" ng-show="userProfileModel.isBGC">
+                            <label>Select File(jpg,png or pdf) <span class="requiredStar">*</span>:</label>
+                            <input id="UploadEmployment" type="file" class="upload"
+                                   onchange="angular.element(this).scope().userDashboard.uploadUserProfileImage(this.files)"
+                                   title="Profile Image" accept="image/*"/>
+
+                        </div>
+
+                        <div class="col-md-2 form-group" style="text-align: right">
+                            <p>&nbsp;</p>
+                            <button type="submit" class="btn btn-primary"> Upload</button>
+                            <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div id="identityAndAddress" class="tab-pane fade">
+
+            <h3>Identity and Address Documents</h3>
+
+            <button type="button" class="btn btn-link waves-effect collapsed"
+                    style="font-size: 16px;" data-toggle="collapse" data-target="#identityToggle">
+                <i class="fa fa-plus fa-fw"></i> Add New
+            </button>
+
+            <div class="collapse" id="identityToggle">
+                <form role="form" ng-submit="">
+                    <div class="row p_lr_0">
+                        <div class="col-md-6">
+                            <label for="identityName">Name of Document<span class="requiredStar">*</span>:</label>
+                            <input type="text" title="Document Name" class="form-control" id="identityName"
+                                   placeholder="Document Name" maxlength="100" required>
+                        </div>
+
+                        <div class="col-md-4 form-group" ng-show="userProfileModel.isBGC">
+                            <label>Select File(jpg,png or pdf) <span class="requiredStar">*</span>:</label>
+                            <input id="UploadIdentity" type="file" class="upload"
+                                   onchange="angular.element(this).scope().userDashboard.uploadUserProfileImage(this.files)"
+                                   title="Profile Image" accept="image/*"/>
+
+                        </div>
+
+                        <div class="col-md-2 form-group" style="text-align: right">
+                            <p>&nbsp;</p>
+                            <button type="submit" class="btn btn-primary"> Upload</button>
+                            <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+        <div id="other" class="tab-pane fade">
+
+            <h3>All Other Documents which is/are required.</h3>
+
+            <button type="button" class="btn btn-link waves-effect collapsed"
+                    style="font-size: 16px;" data-toggle="collapse" data-target="#otherToggle">
+                <i class="fa fa-plus fa-fw"></i> Add New
+            </button>
+
+            <div class="collapse" id="otherToggle">
+                <form role="form" ng-submit="">
+                    <div class="row p_lr_0">
+                        <div class="col-md-6">
+                            <label for="otherDocName">Name of Document<span class="requiredStar">*</span>:</label>
+                            <input type="text" title="Document Name" class="form-control" id="otherDocName"
+                                   placeholder="Document Name" maxlength="100" required>
+                        </div>
+
+                        <div class="col-md-4 form-group" ng-show="userProfileModel.isBGC">
+                            <label>Select File(jpg,png or pdf) <span class="requiredStar">*</span>:</label>
+                            <input id="UploadOther" type="file" class="upload"
+                                   onchange="angular.element(this).scope().userDashboard.uploadUserProfileImage(this.files)"
+                                   title="Profile Image" accept="image/*"/>
+
+                        </div>
+
+                        <div class="col-md-2 form-group" style="text-align: right">
+                            <p>&nbsp;</p>
+                            <button type="submit" class="btn btn-primary"> Upload</button>
+                            <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

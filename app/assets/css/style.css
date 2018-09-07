@@ -119,6 +119,10 @@ body {
     padding-left: 0px;
     padding-right:0px;
 }
+.p_lr_10{
+    padding-left: 10px;
+    padding-right:10px;
+}
 .breadcrumb {
     padding-top:15px;
     padding-bottom:15px;

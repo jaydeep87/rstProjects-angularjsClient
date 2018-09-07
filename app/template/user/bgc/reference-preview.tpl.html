@@ -54,15 +54,15 @@
                     <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Name</td>
-                        <td>Contact</td>
-                        <td>E-Mail</td>
+                        <td>{{bgcReferenceModel.referenceList[0].name}}</td>
+                        <td>{{bgcReferenceModel.referenceList[0].contact}}</td>
+                        <td>{{bgcReferenceModel.referenceList[0].email}}</td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Name</td>
-                        <td>Contact</td>
-                        <td>E-Mail</td>
+                        <td>{{bgcReferenceModel.referenceList[1].name}}</td>
+                        <td>{{bgcReferenceModel.referenceList[1].contact}}</td>
+                        <td>{{bgcReferenceModel.referenceList[1].email}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -80,16 +80,16 @@
                         <p>Reference 1 :-</p>
                         <div class="col-md-4 form-group">
                             <label for="ref1Name">Name<span class="requiredStar">*</span>:</label>
-                            <input type="text" class="form-control" id="ref1Name" placeholder="Name" required>
+                            <input type="text" class="form-control" id="ref1Name" placeholder="Name" ng-model="bgcReferenceModel.referenceList[0].name" required>
                         </div>
 
                         <div class="col-md-4 form-group">
                             <label for="ref1Contact">Contact<span class="requiredStar">*</span>:</label>
-                            <input type="text" class="form-control" id="ref1Contact" placeholder="Contact" required>
+                            <input type="text" class="form-control" id="ref1Contact" placeholder="Contact" ng-model="bgcReferenceModel.referenceList[0].contact" required>
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="ref1Email">Email<span class="requiredStar">*</span>:</label>
-                            <input type="text" class="form-control" id="ref1Email" placeholder="Email" required>
+                            <input type="email" class="form-control" id="ref1Email" placeholder="Email" ng-model="bgcReferenceModel.referenceList[0].email">
                         </div>
                     </div>
 
@@ -97,16 +97,16 @@
                         <p>Reference 2 :-</p>
                         <div class="col-md-4 form-group">
                             <label for="ref2Name">Name<span class="requiredStar">*</span>:</label>
-                            <input type="text" class="form-control" id="ref2Name" placeholder="Name" required>
+                            <input type="text" class="form-control" id="ref2Name" placeholder="Name" ng-model="bgcReferenceModel.referenceList[1].name" required>
                         </div>
 
                         <div class="col-md-4 form-group">
                             <label for="ref2Contact">Contact<span class="requiredStar">*</span>:</label>
-                            <input type="text" class="form-control" id="ref2Contact" placeholder="Contact" required>
+                            <input type="text" class="form-control" id="ref2Contact" placeholder="Contact" ng-model="bgcReferenceModel.referenceList[1].contact" required>
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="ref2Email">Email<span class="requiredStar">*</span>:</label>
-                            <input type="text" class="form-control" id="ref2Email" placeholder="Email" required>
+                            <input type="email" class="form-control" id="ref2Email" placeholder="Email" ng-model="bgcReferenceModel.referenceList[1].email">
                         </div>
                     </div>
 

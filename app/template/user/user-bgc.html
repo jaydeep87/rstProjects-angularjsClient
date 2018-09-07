@@ -25,19 +25,7 @@
             <div id="m_references" class="tab-pane fade {{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 5 ? 'in active' : ''}}" ng-include="'./app/template/user/bgc/reference-preview.tpl.html'"></div>
             <div id="m_identity" class="tab-pane fade {{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 6 ? 'in active' : ''}}" ng-include="'./app/template/user/bgc/identity-preview.tpl.html'"></div>
 
-            <div id="m_documents" class="tab-pane fade {{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 7 ? 'in active' : ''}}">
-                <div class="row m_lr_20" style="padding-top: 15px">
-                    <strong style="border-bottom-color: #f16235; border-width: medium; border-bottom-style: solid">Upload documents :</strong>
-                    <p>&nbsp;</p>
-
-                    <form>
-                        <div class="col-md-12 form-group" style="text-align: right">
-                            <button type="submit" class="btn btn-primary"> Save </button>
-                            <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <div id="m_documents" class="tab-pane fade {{userProfileModel.isBGC ? '' : 'inActive'}} {{tab_id == 7 ? 'in active' : ''}}" ng-include="'./app/template/user/bgc/document-gallery.tpl.html'"></div>
         </div>
 
     </div>

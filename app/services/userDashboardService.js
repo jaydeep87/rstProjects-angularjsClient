@@ -121,6 +121,32 @@
 
 
         /***************** *************************************
+         functionName:uploadFileWithData
+         inputJSON:
+         outputJSON:
+         Description:
+         UseIn:
+         OwnerName:Jaydeep Verma
+         Date: 13/08/2018
+
+         *******************************************************/
+        factory.uploadFileWithData = function (file, data, uploadUrl) {
+            var fd = new FormData();
+            fd.append('educational_document', file[0]);
+            fd.append('name', data.name);
+            fd.append('authToken', data.authToken);
+            fd.append('_id', data._id);
+            return $http.post(uploadUrl, fd, {headers: {'Content-Type': undefined}}).success(function (result) {
+                return result;
+            })
+                .error(function (err) {
+                    return(err);
+                });
+        };
+
+
+
+        /***************** *************************************
          functionName:getUserEducationById
          inputJSON:
          outputJSON:
@@ -162,6 +188,30 @@
 
         };
 
+
+               /***************** *************************************
+         functionName:updateUserBGCEmploymentDetails
+         inputJSON:
+         outputJSON:
+         Description:
+         UseIn:userDashboardController
+         OwnerName: Jaydeep Verma
+         Date:   05/09/2018
+         *******************************************************/
+
+        factory.updateUserBGCEmploymentDetails = function (serviceInput) {
+            return $http.post(apiVersion + "user/update-user-bgc-employment-details", serviceInput)
+                .success(function (resultData) {
+                    return resultData;
+                })
+                .error(function (err) {
+                    return err;
+                });
+
+        };
+
+
+
         /***************** *************************************
          functionName:getUserEmploymentById
          inputJSON:
@@ -183,6 +233,113 @@
 
         };
 
+
+        /***************** *************************************
+         functionName:getUserReferenceById
+         inputJSON:
+         outputJSON:
+         Description:
+         UseIn:userDashboardController
+         OwnerName: Jaydeep Verma
+         Date:   06/09/2018
+
+         *******************************************************/
+        factory.getUserReferenceById = function (serviceInput) {
+            return $http.post(apiVersion + "user/get-user-bgc-reference-details", serviceInput)
+                .success(function (resultData) {
+                    return resultData;
+                })
+                .error(function (err) {
+                    return err;
+                });
+
+        };
+
+        /***************** *************************************
+         functionName:updateUserBGCReferenceDetails
+         inputJSON:
+         outputJSON:
+         Description:
+         UseIn:userDashboardController
+         OwnerName: Jaydeep Verma
+         Date:   06/09/2018
+         *******************************************************/
+
+        factory.updateUserBGCReferenceDetails = function (serviceInput) {
+            return $http.post(apiVersion + "user/update-user-bgc-reference-details", serviceInput)
+                .success(function (resultData) {
+                    return resultData;
+                })
+                .error(function (err) {
+                    return err;
+                });
+
+        };
+
+
+        /***************** *************************************
+         functionName:getUserIdentityById
+         inputJSON:
+         outputJSON:
+         Description:
+         UseIn:userDashboardController
+         OwnerName: Jaydeep Verma
+         Date:   06/09/2018
+
+         *******************************************************/
+        factory.getUserIdentityById = function (serviceInput) {
+            return $http.post(apiVersion + "user/get-user-bgc-identity-details", serviceInput)
+                .success(function (resultData) {
+                    return resultData;
+                })
+                .error(function (err) {
+                    return err;
+                });
+
+        };
+
+        /***************** *************************************
+         functionName:updateUserBGCIdentityDetails
+         inputJSON:
+         outputJSON:
+         Description:
+         UseIn:userDashboardController
+         OwnerName: Jaydeep Verma
+         Date:   06/09/2018
+         *******************************************************/
+
+        factory.updateUserBGCIdentityDetails = function (serviceInput) {
+            return $http.post(apiVersion + "user/update-user-bgc-identity-details", serviceInput)
+                .success(function (resultData) {
+                    return resultData;
+                })
+                .error(function (err) {
+                    return err;
+                });
+
+        };
+
+
+        /***************** *************************************
+         functionName:updateUserBGCIdentityDetails
+         inputJSON:
+         outputJSON:
+         Description:
+         UseIn:userDashboardController
+         OwnerName: Jaydeep Verma
+         Date:   06/09/2018
+         *******************************************************/
+
+        factory.getUserBGCEducationalDocumentDetails = function (serviceInput) {
+            return $http.post(apiVersion + "user/get-user-bgc-education-document-details", serviceInput)
+                .success(function (resultData) {
+                    return resultData;
+                })
+                .error(function (err) {
+                    return err;
+                });
+
+        };
 
 
 

@@ -9,143 +9,143 @@
         <div class="col-md-12 p_lr_0 p_b_0" style="border: solid;border-color: #00627e;">
 
             <div class="col-md-12 p_lr_0 p_b_0" style="border: solid;border-color: #00627e;">
-                <h3>Employment Verifications Details</h3>
-                <h6> <strong>Note :- </strong> Employment Verifications(Please furnish employment details for the last 5 yrs).</h6>
-                <table class="table table-striped" style="margin-bottom: 0px">
+                <h3>Employment Verifications Details ({{bgcEmploymentModel.isExperienced ? 'Experienced' : 'Fresher'}})</h3>
+                <h6 ng-show="bgcEmploymentModel.isExperienced"> <strong>Note :- </strong> Employment Verifications(Please furnish employment details for the last 5 yrs).</h6>
+                <h5 ng-show="bgcEmploymentModel.isExperienced">Current Employer Reference Status : {{bgcEmploymentModel.canVerifyIn15Days}}, {{bgcEmploymentModel.dateForVerification}} </h5>
+                <table class="table table-striped" ng-show="bgcEmploymentModel.isExperienced" style="margin-bottom: 0px">
                     <tbody>
                     <tr>
                         <td colspan="2" class="col-md-2 convert-td-in-header"><strong>Information Type</strong></td>
-                        <td><strong>Employment1</strong></td>
-                        <td><strong>Employment2</strong></td>
-                        <td><strong>Employment3</strong></td>
-                        <td><strong>Employment4</strong></td>
-                        <td><strong>Employment5</strong></td>
+                        <td ng-if="bgcEmploymentModel.employmentList.length >= 1"><strong>Employment1</strong></td>
+                        <td ng-if="bgcEmploymentModel.employmentList.length >= 2"><strong>Employment2</strong></td>
+                        <td ng-if="bgcEmploymentModel.employmentList.length >= 3"><strong>Employment3</strong></td>
+                        <td ng-if="bgcEmploymentModel.employmentList.length >= 4"><strong>Employment4</strong></td>
+                        <td ng-if="bgcEmploymentModel.employmentList.length >= 5"><strong>Employment5</strong></td>
                     </tr>
 
                     <tr>
                         <td colspan="2" class="convert-td-in-header">Company Name</td>
-                        <td>a technologies pvt ltd</td>
-                        <td>a technologies pvt ltd</td>
-                        <td>a technologies pvt ltd</td>
-                        <td>a technologies pvt ltd</td>
-                        <td>a technologies pvt ltd</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].companyName">{{bgcEmploymentModel.employmentList[0].companyName}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].companyName">{{bgcEmploymentModel.employmentList[1].companyName}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].companyName">{{bgcEmploymentModel.employmentList[2].companyName}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].companyName">{{bgcEmploymentModel.employmentList[3].companyName}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].companyName">{{bgcEmploymentModel.employmentList[4].companyName}}</td>
                     </tr>
                     <tr>
                         <td colspan="2"  class="convert-td-in-header">Address with Pin Code</td>
-                        <td>Rostan Technologies sector 54 chowk, sikandarpur, gurgaon, 122002</td>
-                        <td>Rostan Technologies sector 54 chowk, sikandarpur, gurgaon, 122002</td>
-                        <td>Rostan Technologies sector 54 chowk, sikandarpur, gurgaon, 122002</td>
-                        <td>Rostan Technologies sector 54 chowk, sikandarpur, gurgaon, 122002</td>
-                        <td>Rostan Technologies sector 54 chowk, sikandarpur, gurgaon, 122002</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].companyAddressWithPin">{{bgcEmploymentModel.employmentList[0].companyAddressWithPin}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].companyAddressWithPin">{{bgcEmploymentModel.employmentList[1].companyAddressWithPin}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].companyAddressWithPin">{{bgcEmploymentModel.employmentList[2].companyAddressWithPin}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].companyAddressWithPin">{{bgcEmploymentModel.employmentList[3].companyAddressWithPin}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].companyAddressWithPin">{{bgcEmploymentModel.employmentList[4].companyAddressWithPin}}</td>
 
                     </tr>
                     <tr>
                         <td colspan="2"  class="convert-td-in-header">Remuneration</td>
-                        <td>600000</td>
-                        <td>600000</td>
-                        <td>600000</td>
-                        <td>600000</td>
-                        <td>600000</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].remuneration"><i class="fa fa-inr"></i> {{bgcEmploymentModel.employmentList[0].remuneration}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].remuneration"><i class="fa fa-inr"></i> {{bgcEmploymentModel.employmentList[1].remuneration}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].remuneration"><i class="fa fa-inr"></i> {{bgcEmploymentModel.employmentList[2].remuneration}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].remuneration"><i class="fa fa-inr"></i> {{bgcEmploymentModel.employmentList[3].remuneration}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].remuneration"><i class="fa fa-inr"></i> {{bgcEmploymentModel.employmentList[4].remuneration}}</td>
                     </tr>
                     <tr>
                         <td colspan="2" class="convert-td-in-header">Designation</td>
-                        <td>Software Engneer</td>
-                        <td>Software Engneer</td>
-                        <td>Software Engneer</td>
-                        <td>Software Engneer</td>
-                        <td>Software Engneer</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].designation">{{bgcEmploymentModel.employmentList[0].designation}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].designation">{{bgcEmploymentModel.employmentList[1].designation}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].designation">{{bgcEmploymentModel.employmentList[2].designation}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].designation">{{bgcEmploymentModel.employmentList[3].designation}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].designation">{{bgcEmploymentModel.employmentList[4].designation}}</td>
                     </tr>
                     <tr>
                         <td colspan="2" class="convert-td-in-header">Employee code</td>
-                        <td>RST123456</td>
-                        <td>RST123456</td>
-                        <td>RST123456</td>
-                        <td>RST123456</td>
-                        <td>RST123456</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].employeeId">{{bgcEmploymentModel.employmentList[0].employeeId}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].employeeId">{{bgcEmploymentModel.employmentList[1].employeeId}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].employeeId">{{bgcEmploymentModel.employmentList[2].employeeId}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].employeeId">{{bgcEmploymentModel.employmentList[3].employeeId}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].employeeId">{{bgcEmploymentModel.employmentList[4].employeeId}}</td>
 
                     </tr>
                     <tr>
                         <td colspan="2" class="convert-td-in-header">Reasons for leaving</td>
-                        <td>Learning</td>
-                        <td>Learning</td>
-                        <td>Learning</td>
-                        <td>Learning</td>
-                        <td>Learning</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].reasonForLeaving">{{bgcEmploymentModel.employmentList[0].reasonForLeaving}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].reasonForLeaving">{{bgcEmploymentModel.employmentList[1].reasonForLeaving}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].reasonForLeaving">{{bgcEmploymentModel.employmentList[2].reasonForLeaving}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].reasonForLeaving">{{bgcEmploymentModel.employmentList[3].reasonForLeaving}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].reasonForLeaving">{{bgcEmploymentModel.employmentList[4].reasonForLeaving}}</td>
                     </tr>
                     <tr>
                         <td colspan="2" class="convert-td-in-header" title="In years & month i.e 2 years & 1 month">Period of Employment</td>
-                        <td>3 Years 1 Month</td>
-                        <td>3 Years 1 Month</td>
-                        <td>3 Years 1 Month</td>
-                        <td>3 Years 1 Month</td>
-                        <td>3 Years 1 Month</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].period">{{bgcEmploymentModel.employmentList[0].period}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].period">{{bgcEmploymentModel.employmentList[1].period}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].period">{{bgcEmploymentModel.employmentList[2].period}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].period">{{bgcEmploymentModel.employmentList[3].period}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].period">{{bgcEmploymentModel.employmentList[4].period}}</td>
                     </tr>
                     <tr>
                         <td colspan="2" class="convert-td-in-header">From Date</td>
-                        <td>31/12/2006</td>
-                        <td>31/12/2006</td>
-                        <td>31/12/2006</td>
-                        <td>31/12/2006</td>
-                        <td>31/12/2006</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].fromDate">{{bgcEmploymentModel.employmentList[0].fromDate}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].fromDate">{{bgcEmploymentModel.employmentList[1].fromDate}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].fromDate">{{bgcEmploymentModel.employmentList[2].fromDate}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].fromDate">{{bgcEmploymentModel.employmentList[3].fromDate}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].fromDate">{{bgcEmploymentModel.employmentList[4].fromDate}}</td>
                     </tr>
                     <tr>
                         <td colspan="2" class="convert-td-in-header">To Date</td>
-                        <td>31/12/2006</td>
-                        <td>31/12/2006</td>
-                        <td>31/12/2006</td>
-                        <td>31/12/2006</td>
-                        <td>31/12/2006</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].toDate">{{bgcEmploymentModel.employmentList[0].toDate}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].toDate">{{bgcEmploymentModel.employmentList[1].toDate}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].toDate">{{bgcEmploymentModel.employmentList[2].toDate}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].toDate">{{bgcEmploymentModel.employmentList[3].toDate}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].toDate">{{bgcEmploymentModel.employmentList[4].toDate}}</td>
                     </tr>
                     <tr>
                         <td rowspan="3" class="convert-td-in-header">HR Details</td>
                         <td class="convert-td-in-header">Name</td>
-                        <td>Jaydeep Verma</td>
-                        <td>Jaydeep Verma</td>
-                        <td>Jaydeep Verma</td>
-                        <td>Jaydeep Verma</td>
-                        <td>Jaydeep Verma</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].hrName">{{bgcEmploymentModel.employmentList[0].hrName}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].hrName">{{bgcEmploymentModel.employmentList[1].hrName}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].hrName">{{bgcEmploymentModel.employmentList[2].hrName}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].hrName">{{bgcEmploymentModel.employmentList[3].hrName}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].hrName">{{bgcEmploymentModel.employmentList[4].hrName}}</td>
                     </tr>
                     <tr>
                         <td class="convert-td-in-header">Contact</td>
-                        <td>99999999999</td>
-                        <td>99999999999</td>
-                        <td>99999999999</td>
-                        <td>99999999999</td>
-                        <td>99999999999</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].hrContact">{{bgcEmploymentModel.employmentList[0].hrContact}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].hrContact">{{bgcEmploymentModel.employmentList[1].hrContact}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].hrContact">{{bgcEmploymentModel.employmentList[2].hrContact}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].hrContact">{{bgcEmploymentModel.employmentList[3].hrContact}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].hrContact">{{bgcEmploymentModel.employmentList[4].hrContact}}</td>
                     </tr>
                     <tr>
                         <td class="convert-td-in-header">email</td>
-                        <td>abcdeefff@gmail.com</td>
-                        <td>abcdeefff@gmail.com</td>
-                        <td>abcdeefff@gmail.com</td>
-                        <td>abcdeefff@gmail.com</td>
-                        <td>abcdeefff@gmail.com</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].hrEmail">{{bgcEmploymentModel.employmentList[0].hrEmail}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].hrEmail">{{bgcEmploymentModel.employmentList[1].hrEmail}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].hrEmail">{{bgcEmploymentModel.employmentList[2].hrEmail}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].hrEmail">{{bgcEmploymentModel.employmentList[3].hrEmail}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].hrEmail">{{bgcEmploymentModel.employmentList[4].hrEmail}}</td>
                     </tr>
                     <tr>
                         <td rowspan="3" class="convert-td-in-header">Supervisor Details</td>
                         <td class="convert-td-in-header">Name</td>
-                        <td>abc shrivastava</td>
-                        <td>abc shrivastava</td>
-                        <td>abc shrivastava</td>
-                        <td>abc shrivastava</td>
-                        <td>abc shrivastava</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].supervisorName">{{bgcEmploymentModel.employmentList[0].supervisorName}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].supervisorName">{{bgcEmploymentModel.employmentList[1].supervisorName}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].supervisorName">{{bgcEmploymentModel.employmentList[2].supervisorName}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].supervisorName">{{bgcEmploymentModel.employmentList[3].supervisorName}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].supervisorName">{{bgcEmploymentModel.employmentList[4].supervisorName}}</td>
                     </tr>
                     <tr>
                         <td class="convert-td-in-header">Contact</td>
-                        <td>9999999999</td>
-                        <td>9999999999</td>
-                        <td>9999999999</td>
-                        <td>9999999999</td>
-                        <td>9999999999</td>
-
+                        <td ng-if="bgcEmploymentModel.employmentList[0].supervisorContact">{{bgcEmploymentModel.employmentList[0].supervisorContact}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].supervisorContact">{{bgcEmploymentModel.employmentList[1].supervisorContact}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].supervisorContact">{{bgcEmploymentModel.employmentList[2].supervisorContact}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].supervisorContact">{{bgcEmploymentModel.employmentList[3].supervisorContact}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].supervisorContact">{{bgcEmploymentModel.employmentList[4].supervisorContact}}</td>
                     </tr>
                     <tr>
                         <td class="convert-td-in-header">email</td>
-                        <td>abcdefeee@gmail.com</td>
-                        <td>abcdefeee@gmail.com</td>
-                        <td>abcdefeee@gmail.com</td>
-                        <td>abcdefeee@gmail.com</td>
-                        <td>abcdefeee@gmail.com</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[0].supervisorEmail">{{bgcEmploymentModel.employmentList[0].supervisorEmail}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[1].supervisorEmail">{{bgcEmploymentModel.employmentList[1].supervisorEmail}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[2].supervisorEmail">{{bgcEmploymentModel.employmentList[2].supervisorEmail}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[3].supervisorEmail">{{bgcEmploymentModel.employmentList[3].supervisorEmail}}</td>
+                        <td ng-if="bgcEmploymentModel.employmentList[4].supervisorEmail">{{bgcEmploymentModel.employmentList[4].supervisorEmail}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -157,7 +157,7 @@
         <div class="col-md-12" style="border: solid; border-color: #f16235;">
             <p>&nbsp;</p>
             <h6> <strong>Note :- </strong> Please add employment latest to oldest order for the last 5 yrs.</h6>
-            <form name="userEmploymentDetailsForm" ng-submit="userDashboard.addUpdateEmploymentDetails()">
+            <form name="userEmploymentDetailsForm" ng-submit="userDashboard.updateBGCEmploymentDetails()">
                 <p style="border-bottom-color: #f16235; border-width: thin; border-bottom-style: solid;">Employment Details :- <label><input type="checkbox" value="" ng-model="bgcEmploymentModel.isExperienced" ng-change="checkEmployment(bgcEmploymentModel.isExperienced)"><strong>Experienced</strong></label></p>
 
                 <div class="row" style="border: solid; border-width: thin;border-color: gray; padding-top: 10px" ng-repeat="employment in bgcEmploymentModel.employmentList track by $index">
@@ -169,55 +169,58 @@
 
                         <div class="col-md-3 form-group">
                             <label for="remuneration{{$index}}">Remuneration<span class="requiredStar">*</span>:</label>:
-                            <input type="text" class="form-control" id="remuneration{{$index}}" placeholder="Remuneration" maxlength="100" required>
+                            <input type="text" class="form-control" id="remuneration{{$index}}" placeholder="Remuneration" ng-model="employment.remuneration" only-numbers maxlength="10" required>
                         </div>
                         <div class="col-md-3 form-group">
                             <label for="designation{{$index}}">Designation<span class="requiredStar">*</span>:</label>:
-                            <input type="text" class="form-control" id="designation{{$index}}" placeholder="Designation" maxlength="100" required>
+                            <input type="text" class="form-control" id="designation{{$index}}" placeholder="Designation" ng-model="employment.designation" maxlength="100" required>
                         </div>
 
                         <div class="col-md-3 form-group">
                             <label for="employeeCode{{$index}}">Employee Code<span class="requiredStar">*</span>:</label>:
-                            <input type="text" class="form-control" id="employeeCode{{$index}}" placeholder="Employee Code" maxlength="50" required>
+                            <input type="text" class="form-control" id="employeeCode{{$index}}" placeholder="Employee Code" ng-model="employment.employeeId" maxlength="50" required>
                         </div>
 
 
-                        <div class="col-md-6 form-group">
-                            <label for="companyAddress{{$index}}">Address with Pin Code<span class="requiredStar">*</span>:</label>:
-                            <input type="text" class="form-control" id="companyAddress{{$index}}" placeholder="Company Address" maxlength="200" required>
-                        </div>
-
-
-                        <div class="col-md-2 form-group">
+                        <div class="col-md-2 form-group" ng-init="getDurationDate()">
                             <label for="employmentFromDate{{$index}}">From Date<span class="requiredStar">*</span>:</label>
-                            <input type="text" class="form-control" id="employmentFromDate{{$index}}" placeholder="From" required>
+                            <input type="text" class="form-control datetimepicker1" id="employmentFromDate{{$index}}" placeholder="From" onkeydown="return false;" ng-model="employment.fromDate" required>
                         </div>
 
                         <div class="col-md-2 form-group">
                             <label for="employmentToDate{{$index}}">To Date<span class="requiredStar">*</span>:</label>
-                            <input type="text" class="form-control" id="employmentToDate{{$index}}" placeholder="To" required>
+                            <input type="text" class="form-control datetimepicker1" id="employmentToDate{{$index}}" placeholder="To" onkeydown="return false;" ng-model="employment.toDate" required>
                         </div>
 
                         <div class="col-md-2 form-group">
-                            <label for="employmentPeriod{{$index}}">Period<span class="requiredStar">*</span>:</label>:
-                            <input type="text" title="Period of Employment (In years & month i.e 2 years & 1 month)" class="form-control" id="employmentPeriod{{$index}}" placeholder="Period" maxlength="50" required>
+                            <label for="employmentPeriod{{$index}}">Period(Yrs and Month) <span class="requiredStar">*</span>:</label>
+                            <input type="text" title="Period of Employment (In years & month i.e 2 years & 1 month)" class="form-control" id="employmentPeriod{{$index}}" placeholder="Period" ng-model="employment.period" maxlength="50" required>
                         </div>
 
+                        <div class="col-md-3 form-group">
+                            <label for="companyAddress{{$index}}">Address with Pin Code<span class="requiredStar">*</span>:</label>:
+                            <input type="text" class="form-control" id="companyAddress{{$index}}" placeholder="Company Address" ng-model="employment.companyAddressWithPin" maxlength="200" required>
+                        </div>
+
+                        <div class="col-md-3 form-group">
+                            <label for="reasonForLeaving{{$index}}">Reason For Leaving<span class="requiredStar">*</span>:</label>:
+                            <input type="text" class="form-control" id="reasonForLeaving{{$index}}" placeholder="Reason For Leaving" ng-model="employment.reasonForLeaving" maxlength="200" required>
+                        </div>
 
                         <div class="col-md-6">
                             <p>HR details :-</p>
                             <div class="col-md-4 form-group">
                                 <label for="employmentHRName{{$index}}">Name<span class="requiredStar">*</span>:</label>
-                                <input type="text" class="form-control" id="employmentHRName{{$index}}" placeholder="Name" required>
+                                <input type="text" class="form-control" id="employmentHRName{{$index}}" placeholder="Name" ng-model="employment.hrName" required>
                             </div>
 
                             <div class="col-md-4 form-group">
                                 <label for="employmentHRContact{{$index}}">Contact No.<span class="requiredStar">*</span>:</label>
-                                <input type="text" class="form-control" id="employmentHRContact{{$index}}" placeholder="Contact" required>
+                                <input type="text" class="form-control" id="employmentHRContact{{$index}}" placeholder="Contact" ng-model="employment.hrContact" required>
                             </div>
                             <div class="col-md-4 form-group">
                                 <label for="employmentHREmail{{$index}}">Email Id.<span class="requiredStar">*</span>:</label>
-                                <input type="text" class="form-control" id="employmentHREmail{{$index}}" placeholder="Email Id" required>
+                                <input type="email" class="form-control" id="employmentHREmail{{$index}}" placeholder="Email Id" ng-model="employment.hrEmail" required>
                             </div>
                         </div>
 
@@ -225,16 +228,16 @@
                             <p>Supervisor details :-</p>
                             <div class="col-md-4 form-group">
                                 <label for="supervisorName{{$index}}">Name<span class="requiredStar">*</span>:</label>
-                                <input type="text" class="form-control" id="supervisorName{{$index}}" placeholder="Name" required>
+                                <input type="text" class="form-control" id="supervisorName{{$index}}" placeholder="Name" ng-model="employment.supervisorName" required>
                             </div>
 
                             <div class="col-md-4 form-group">
                                 <label for="supervisorContact{{$index}}">Contact No.<span class="requiredStar">*</span>:</label>
-                                <input type="text" class="form-control" id="supervisorContact{{$index}}" placeholder="Contact" required>
+                                <input type="text" class="form-control" id="supervisorContact{{$index}}" placeholder="Contact" ng-model="employment.supervisorContact" required>
                             </div>
                             <div class="col-md-4 form-group">
                                 <label for="supervisorEmail{{$index}}">Email Id.<span class="requiredStar">*</span>:</label>
-                                <input type="text" class="form-control" id="supervisorEmail{{$index}}" placeholder="Email Id" required>
+                                <input type="email" class="form-control" id="supervisorEmail{{$index}}" placeholder="Email Id" ng-model="employment.supervisorEmail" required>
                             </div>
                         </div>
                     </div>
@@ -242,17 +245,26 @@
                         <button type="button" class="btn btn-danger btn-xs" ng-click="deleteEmploymentRow($index)"><i class="fa fa-trash-o"></i></button>
                     </div>
                 </div>
-                <div class="row" ng-show="bgcEmploymentModel.employmentList.length">
-                    <table style="border-collapse: inherit">
-                        <tr>
-                            <td class="col-md-4">Can the Current Employer Reference be taken now(Please writeYes/No. If 'NO', state a date after which we can contact them)</td>
-                            <td class="col-md-2"><input type="text" class="form-control" placeholder="Yes/No"></td>
-                            <td class="col-md-2"><input type="text" class="form-control" placeholder="date"></td>
-                            <td class="col-md-1" style="text-align: center"><a href="" ng-click="addNewEmployment()">Add New</a></td>
-                            <td class="col-md-3"><button type="submit" class="btn btn-primary"> Save </button>
-                                <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a></td>
-                        </tr>
-                    </table>
+                <div class="row p_t_10" ng-init="getFutureDate()">
+                    <!--<table style="border-collapse: inherit" >-->
+                        <!--<tr>-->
+                            <!--<td class="col-md-4">Can the Current Employer Reference be taken now(Please writeYes/No. If 'NO', state a date after which we can contact them)</td>-->
+                            <!--<td class="col-md-2"><input type="text" ng-model="bgcEmploymentModel.canVerifyIn15Days" class="form-control" placeholder="Yes/No"></td>-->
+                            <!--<td class="col-md-2"><div class="form-group"><input type="text" ng-model="bgcEmploymentModel.dateForVerification" class="form-control datetimepicker2" style="position: relative" placeholder="date"></div></td>-->
+                            <!--<td class="col-md-1" style="text-align: center"><a href="" ng-click="addNewEmployment()">Add New</a></td>-->
+                            <!--<td class="col-md-3"><button type="submit" class="btn btn-primary"> Save </button>-->
+                                <!--<a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a></td>-->
+                        <!--</tr>-->
+                    <!--</table>-->
+
+
+
+                    <div class="col-md-4" ng-show="bgcEmploymentModel.isExperienced">Can the Current Employer Reference be taken now(Please writeYes/No. If 'NO', state a date after which we can contact them)</div>
+                    <div class="col-md-2" ng-show="bgcEmploymentModel.isExperienced"><input type="text" ng-model="bgcEmploymentModel.canVerifyIn15Days" class="form-control" placeholder="Yes/No"></div>
+                    <div class="col-md-2" ng-show="bgcEmploymentModel.isExperienced"><div class="form-group"><input type="text" id="dateForVerification" ng-model="bgcEmploymentModel.dateForVerification" class="form-control datetimepicker2" style="position: relative" placeholder="date"></div></div>
+                    <div class="col-md-1" ng-show="bgcEmploymentModel.isExperienced" style="text-align: center; padding-top: inherit;"><a href="" ng-click="addNewEmployment()">Add New</a></div>
+                    <div class="col-md-3"><button type="submit" class="btn btn-primary"> Save </button>
+                        <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a></div>
                 </div>
 
 

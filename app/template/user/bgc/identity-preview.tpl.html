@@ -25,10 +25,10 @@
                     <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Passport / Driving License No.</td>
-                        <td>Date Of Issue</td>
-                        <td>Date Of Expiry</td>
-                        <td>Place Of Issue</td>
+                        <td class="text-capitalize">{{bgcIdentityModel.identityList[0].type}}</td>
+                        <td>{{bgcIdentityModel.identityList[0].dateOfIssue}}</td>
+                        <td>{{bgcIdentityModel.identityList[0].dateOfExpiry}}</td>
+                        <td>{{bgcIdentityModel.identityList[0].placeOfIssue}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -40,30 +40,40 @@
                 <p>&nbsp;</p>
                 <form name="userIdentityDetailsForm" ng-submit="userDashboard.addUpdateIdentityDetails()">
 
-                    <div class="col-md-3 form-group">
-                        <label for="passportNo">Passport / Driving License No.:</label>
-                        <input type="text" class="form-control" id="passportNo" placeholder="Passport / Driving License No">
+                    <div class="col-md-2 form-group">
+                        <label for="identityType">Type Of Identity</label>
+                        <select class="form-control" id="identityType" name="identityType" ng-model="bgcIdentityModel.identityList[0].type" required>
+                            <option value="">Type Of Identity</option>
+                            <option value="driving license" selected>Driving License</option>
+                            <option value="passport">Passport</option>
+                        </select>
                     </div>
 
                     <div class="col-md-3 form-group">
-                        <label for="dateOfIssue">Date Of Issue:</label>
-                        <input type="text" class="form-control" id="dateOfIssue" placeholder="Date Of Issue">
+                        <label for="passportNo">Passport/Driving License No.:</label>
+                        <input type="text" class="form-control" id="passportNo" placeholder="Passport / Driving License No" ng-model="bgcIdentityModel.identityList[0].number" required>
                     </div>
 
-                    <div class="col-md-3 form-group">
-                        <label for="dateOfExpiry">Date Of Expiry:</label>
-                        <input type="text" class="form-control" id="dateOfExpiry" placeholder="Date Of Expiry">
+                    <div class="col-md-2 form-group" ng-init="getDurationDate()">
+                        <label for="dateOfIssue0">Date Of Issue:</label>
+                        <input type="text" class="form-control datetimepicker1" id="dateOfIssue0" placeholder="Date Of Issue" onkeydown="return false;" ng-model="bgcIdentityModel.identityList[0].dateOfIssue" required>
+                    </div>
+
+                    <div class="col-md-2 form-group" ng-init="getFutureDate()">
+                        <label for="dateOfExpiry0">Date Of Expiry:</label>
+                        <input type="text" class="form-control datetimepicker2" id="dateOfExpiry0" placeholder="Date Of Expiry" onkeydown="return false;" ng-model="bgcIdentityModel.identityList[0].dateOfExpiry" required>
                     </div>
 
                     <div class="col-md-3 form-group">
                         <label for="palceOfIssue">Place Of Issue:</label>
-                        <input type="text" class="form-control" id="palceOfIssue" placeholder="Place of Issue">
+                        <input type="text" class="form-control" id="palceOfIssue" placeholder="Place of Issue" ng-model="bgcIdentityModel.identityList[0].placeOfIssue" required>
                     </div>
 
                     <div class="col-md-12 form-group" style="text-align: right">
                         <button type="submit" class="btn btn-primary"> Save </button>
                         <a href="" type="button" class="btn btn-default"><i class="fa fa-times"></i> Cancel </a>
                     </div>
+
                     <!--href="#!/user-dashboard"-->
                 </form>
             </div>
